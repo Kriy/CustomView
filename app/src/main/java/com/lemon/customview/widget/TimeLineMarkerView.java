@@ -13,7 +13,7 @@ import com.lemon.customview.R;
 import com.lemon.customview.utils.ResourceUtil;
 
 /**
- * Created by DF on 2017/9/6.
+ * Created on 2017/9/6.
  */
 
 public class TimeLineMarkerView extends View {

@@ -2,19 +2,40 @@
 <resources>
 
     <!--时间线TimeLineMarkerView-->
+    <declare-styleable name="DepthMapView">
+        <!--买入颜色-->
+        <attr name="buy_color" format="color|reference" />
+        <!--买入区域内部颜色-->
+        <attr name="buy_path_color" format="dimension" />
+        <!--卖出颜色-->
+        <attr name="sell_color" format="color|reference" />
+        <!--卖出区域内部颜色-->
+        <attr name="sell_path_color" format="dimension" />
+        <!--文字颜色-->
+        <attr name="text_color" format="color|reference" />
+        <!--选中时文字颜色-->
+        <attr name="selector_text_color" format="color|reference" />
+        <!--背景颜色-->
+        <attr name="dm_background_color" format="color|reference" />
+        <!--<attr name="markerSize" format="dimension" />-->
+        <!--横向还是竖向-->
+        <!--<attr name="orientation" format="boolean" />-->
+    </declare-styleable>
+
+    <!--时间线TimeLineMarkerView-->
     <declare-styleable name="TimeLineMarker">
         <!--圆点大小-->
-        <attr name="markerSize" format="dimension"/>
+        <attr name="markerSize" format="dimension" />
         <!--圆点颜色或者图片-->
-        <attr name="marker" format="color|reference"/>
+        <attr name="marker" format="color|reference" />
         <!--上面线段颜色或者图片-->
-        <attr name="upLine" format="color|reference"/>
+        <attr name="upLine" format="color|reference" />
         <!--下面线段颜色或者图片-->
-        <attr name="downLine" format="color|reference"/>
+        <attr name="downLine" format="color|reference" />
         <!--线段粗细-->
-        <attr name="lineSize" format="dimension"/>
+        <attr name="lineSize" format="dimension" />
         <!--横向还是竖向-->
-        <attr name="orientation" format="boolean"/>
+        <attr name="orientation" format="boolean" />
     </declare-styleable>
 
     <!--密码输入框PasswordView-->
@@ -41,7 +62,6 @@
             <enum name="rect" value="1" />
         </attr>
     </declare-styleable>
-
 
 
 </resources>

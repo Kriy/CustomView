@@ -3,4 +3,27 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="chart_red">#33B359</color>
+    <color name="chart_green">#DE5633</color>
+
+    <color name="chart_price">#4070C7</color>
+    <color name="chart_ma5">#F3D581</color>
+    <color name="chart_ma10">#53C9B2</color>
+    <color name="chart_ma30">#BE79Fd</color>
+    <color name="chart_white">#fff</color>
+
+    <color name="chart_background">#101724</color>
+    <color name="chart_grid_line">#1A2538</color>
+    <color name="chart_text">#587094</color>
+    <color name="chart_selector">#DA30343C</color>
+    <color name="chart_tab_background">#80101724</color>
+    <color name="chart_tab_indicator">#fff</color>
+
+    <color name="depth_line_green">#1ABB77</color>
+    <color name="depth_line_red">#E75A35</color>
+    <color name="depth_path_green">#0F3031</color>
+    <color name="depth_path_red">#2E2227</color>
+    <color name="depth_selector">#DA30343C</color>
+
 </resources>
