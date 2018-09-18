@@ -20,13 +20,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.btn_depth, R.id.btn_1})
+    @OnClick({R.id.btn_depth, R.id.btn_time})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_depth:
                 startActivity(new Intent(MainActivity.this, DepthMapViewActivity.class));
                 break;
-            case R.id.btn_1:
+            case R.id.btn_time:
+                startActivity(new Intent(MainActivity.this, TimeLineMarkerViewActivity.class));
                 break;
         }
     }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CustomView</string>
+    <string name="app_name">自定义控件</string>
 
     <string name="trust_price">委托价</string>
     <string name="trust_quantity">委托量</string>

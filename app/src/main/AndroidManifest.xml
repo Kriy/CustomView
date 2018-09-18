@@ -21,6 +21,11 @@
 
         <activity
             android:name=".activity.DepthMapViewActivity"
+            android:label="深度图"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.TimeLineMarkerViewActivity"
+            android:label="时间线"
             android:screenOrientation="portrait" />
     </application>
 

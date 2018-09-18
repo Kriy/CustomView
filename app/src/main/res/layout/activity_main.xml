@@ -5,15 +5,6 @@
     android:layout_height="match_parent"
     tools:context="com.lemon.customview.activity.MainActivity">
 
-    <!--<com.lemon.customview.widget.TimeLineMarkerView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:background="#ccc"-->
-    <!--app:marker="@drawable/timeline_bg_blue"-->
-    <!--app:orientation="true"-->
-    <!--app:downLine="#0093ff"-->
-    <!--app:upLine="#0093ff"/>-->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,13 +19,12 @@
             android:text="深度图" />
 
         <Button
-            android:id="@+id/btn_1"
+            android:id="@+id/btn_time"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:background="@color/chart_text"
-            android:text="深度图" />
-
+            android:text="时间线" />
 
     </LinearLayout>
 

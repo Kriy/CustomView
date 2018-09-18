@@ -2,6 +2,7 @@ package com.lemon.customview;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -24,19 +25,44 @@ import java.util.List;
 public class DepthMapView extends View {
 
     private int mWidth;
-    private int mHeight;
+    //圆点半径
+    private int mDotRadius = 2;
+    //圆圈半径
+    private int mCircleRadius = 8;
+    private float mGridWidth;
+    //底部价格区域高度
+    private int mBottomPriceHeight;
+    //右侧委托量绘制个数
+    private int mLineCount;
+    //背景颜色
+    private int mBackgroundColor;
 
-    private int mGridWidth;
-    private int mRowSpace;
-    private int mLineBottom;
-    private int lineCount = 4;
+    private boolean mIsHave;
+    //是否是长按
+    private boolean mIsLongPress;
 
+    //最大的委托量
+    private float mMaxVolume;
+    private float mMultiple;
+    private int mLastPosition;
+    private int mDrawWidth = 0;
+    private int mDrawHeight;
+    //触摸点的X轴值
+    private int mEventX;
+
+    //文案绘制画笔
     private Paint mTextPaint;
+    //买入区域边线绘制画笔
     private Paint mBuyLinePaint;
+    //卖出区域边线绘制画笔
     private Paint mSellLinePaint;
+    //买入区域绘制画笔
     private Paint mBuyPathPaint;
+    //卖出取悦绘制画笔
     private Paint mSellPathPaint;
+    //选中时圆点绘制画笔
     private Paint mRadioPaint;
+    //选中时中间文案背景画笔
     private Paint mSelectorBackgroundPaint;
 
     private Path mBuyPath = new Path();
@@ -45,23 +71,125 @@ public class DepthMapView extends View {
     private List<DepthDataBean> mBuyData;
     private List<DepthDataBean> mSellData;
 
-    public int mPriceLimit;
-    private int mVolumeLimit = 5;
+    //    价格显示精度限制
+    public int mPriceLimit = 4;
+//    private int mVolumeLimit = 5;
 
-    private HashMap<Integer, DepthDataBean> mapX;
-    private HashMap<Integer, Float> mapY;
-    private List<Float> mBottomPrice;
-    private GestureDetector gestureDetector;
+    private HashMap<Integer, DepthDataBean> mMapX;
+    private HashMap<Integer, Float> mMapY;
+    private Float[] mBottomPrice;
+    private GestureDetector mGestureDetector;
 
-    private boolean mIsHave;
-    private boolean mIsLongPress;
+    public DepthMapView(Context context) {
+        this(context, null);
+    }
 
-    private int mLastPosition;
-    private float mMaxVolume;
-    private float mMultiple;
-    private int mDrawWidth = 0;
-    private int mDrawHeight;
-    private int mEventX;
+    public DepthMapView(Context context, @Nullable AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public DepthMapView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init(attrs);
+    }
+
+    @SuppressLint("UseSparseArrays")
+    private void init(AttributeSet attrs) {
+        mBottomPriceHeight = 40;
+        mMapX = new HashMap<>();
+        mMapY = new HashMap<>();
+        mBottomPrice = new Float[4];
+        mBuyData = new ArrayList<>();
+        mSellData = new ArrayList<>();
+        mGestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public void onLongPress(MotionEvent e) {
+                mIsLongPress = true;
+                invalidate();
+            }
+        });
+
+        mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mTextPaint.setTextAlign(Paint.Align.RIGHT);
+
+        mBuyLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mBuyLinePaint.setStrokeWidth(ResourceUtil.dp2px(getContext(), 1.5f));
+        mBuyLinePaint.setStyle(Paint.Style.STROKE);
+        mBuyLinePaint.setTextAlign(Paint.Align.CENTER);
+        mBuyPathPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+
+        mSellLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mSellLinePaint.setStrokeWidth(ResourceUtil.dp2px(getContext(), 1.5f));
+        mSellLinePaint.setStyle(Paint.Style.STROKE);
+        mSellLinePaint.setTextAlign(Paint.Align.CENTER);
+        mSellPathPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+
+        mRadioPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mRadioPaint.setTextAlign(Paint.Align.CENTER);
+        mSelectorBackgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mSelectorBackgroundPaint.setColor(ResourceUtil.getColor(getContext(), R.color.depth_selector));
+
+        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.DepthMapView);
+        if (typedArray != null) {
+            try {
+                mLineCount = typedArray.getInt(R.styleable.DepthMapView_line_count, 4);
+                mDotRadius = typedArray.getDimensionPixelSize(R.styleable.DepthMapView_dot_radius, ResourceUtil.dp2px(getContext(), mDotRadius));
+                mCircleRadius = typedArray.getDimensionPixelSize(R.styleable.DepthMapView_circle_radius, ResourceUtil.dp2px(getContext(), mCircleRadius));
+                mBackgroundColor = typedArray.getColor(R.styleable.DepthMapView_background_color, ResourceUtil.getColor(getContext(), R.color.depth_background));
+                mTextPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_text_color, ResourceUtil.getColor(getContext(), R.color.depth_text_color)));
+                mTextPaint.setTextSize(typedArray.getDimension(R.styleable.DepthMapView_text_size, ResourceUtil.getDimension(getContext(), R.dimen.depth_text_size)));
+                mBuyLinePaint.setColor(typedArray.getColor(R.styleable.DepthMapView_buy_line_color, ResourceUtil.getColor(getContext(), R.color.depth_buy_line)));
+                mSellLinePaint.setColor(typedArray.getColor(R.styleable.DepthMapView_sell_line_color, ResourceUtil.getColor(getContext(), R.color.depth_sell_line)));
+                mBuyPathPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_buy_path_color, ResourceUtil.getColor(getContext(), R.color.depth_buy_path)));
+                mSellPathPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_sell_path_color, ResourceUtil.getColor(getContext(), R.color.depth_sell_path)));
+            } finally {
+                typedArray.recycle();
+            }
+        }
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        this.mWidth = w;
+        mDrawWidth = mWidth / 2 - 1;
+        mDrawHeight = h - mBottomPriceHeight;
+    }
+
+    public void setData(List<DepthDataBean> buyData, List<DepthDataBean> sellData) {
+        float vol = 0;
+        if (buyData.size() > 0) {
+            mBuyData.clear();
+            Collections.sort(buyData, new comparePrice());
+            DepthDataBean depthDataBean;
+            for (int index = buyData.size() - 1; index >= 0; index--) {
+                depthDataBean = buyData.get(index);
+                vol += depthDataBean.getVolume();
+                depthDataBean.setVolume(vol);
+                mBuyData.add(0, depthDataBean);
+            }
+            mBottomPrice[0] = mBuyData.get(0).getPrice();
+            mBottomPrice[1] = mBuyData.get(mBuyData.size() > 1 ? mBuyData.size() - 1 : 0).getPrice();
+            mMaxVolume = mBuyData.get(0).getVolume();
+        }
+
+        if (sellData.size() > 0) {
+            mSellData.clear();
+            vol = 0;
+            Collections.sort(sellData, new comparePrice());
+            for (DepthDataBean depthDataBean : sellData) {
+                vol += depthDataBean.getVolume();
+                depthDataBean.setVolume(vol);
+                mSellData.add(depthDataBean);
+            }
+            mBottomPrice[2] = mSellData.get(0).getPrice();
+            mBottomPrice[3] = mSellData.get(mSellData.size() > 1 ? mSellData.size() - 1 : 0).getPrice();
+            mMaxVolume = Math.max(mMaxVolume, mSellData.get(mSellData.size() - 1).getVolume());
+        }
+        mMaxVolume = mMaxVolume * 1.05f;
+        mMultiple = mMaxVolume / mLineCount;
+        invalidate();
+    }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -85,152 +213,14 @@ public class DepthMapView extends View {
                 invalidate();
                 break;
         }
-        gestureDetector.onTouchEvent(event);
+        mGestureDetector.onTouchEvent(event);
         return true;
-    }
-
-    public DepthMapView(Context context) {
-        this(context, null);
-    }
-
-    public DepthMapView(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
-
-    public DepthMapView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init();
-    }
-
-    private void init() {
-        mLineBottom = 40;
-        mHeight = ResourceUtil.dp2px(getContext(), 200);
-
-        mapX = new HashMap<>();
-        mapY = new HashMap<>();
-
-        mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mTextPaint.setTextAlign(Paint.Align.RIGHT);
-        mTextPaint.setTextSize(ResourceUtil.getDimension(getContext(), R.dimen.depth_text_size));
-        mTextPaint.setColor(ResourceUtil.getColor(getContext(), R.color.chart_text));
-
-        mBuyLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mBuyLinePaint.setColor(ResourceUtil.getColor(getContext(), R.color.depth_line_green));
-        mBuyLinePaint.setStrokeWidth(ResourceUtil.dp2px(getContext(), 1.5f));
-        mBuyLinePaint.setStyle(Paint.Style.STROKE);
-        mBuyLinePaint.setTextAlign(Paint.Align.CENTER);
-
-        mSellLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mSellLinePaint.setColor(ResourceUtil.getColor(getContext(), R.color.depth_line_red));
-        mSellLinePaint.setStrokeWidth(ResourceUtil.dp2px(getContext(), 1.5f));
-        mSellLinePaint.setStyle(Paint.Style.STROKE);
-        mSellLinePaint.setTextAlign(Paint.Align.CENTER);
-
-        mBuyPathPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mBuyPathPaint.setColor(ResourceUtil.getColor(getContext(), R.color.depth_path_green));
-
-        mSellPathPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mSellPathPaint.setColor(ResourceUtil.getColor(getContext(), R.color.depth_path_red));
-
-        mRadioPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mRadioPaint.setTextAlign(Paint.Align.CENTER);
-
-        mSelectorBackgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mSelectorBackgroundPaint.setColor(ResourceUtil.getColor(getContext(), R.color.depth_selector));
-
-        mBottomPrice = new ArrayList<>();
-        mBuyData = new ArrayList<>();
-        mSellData = new ArrayList<>();
-        gestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
-            @Override
-            public void onLongPress(MotionEvent e) {
-                mIsLongPress = true;
-                invalidate();
-            }
-        });
-    }
-
-    public void setData(List<DepthDataBean> buyData, List<DepthDataBean> sellData) {
-        if (buyData.size() > 0) {
-            String volume = String.valueOf(buyData.get(0).getVolume());
-            mVolumeLimit = volume.length() - 1 - volume.indexOf(".");
-            mBuyData.clear();
-            Collections.sort(buyData, new comparePrice());
-            float vol = 0;
-            DepthDataBean depthDataBean;
-            for (int index = buyData.size() - 1; index >= 0; index--) {
-                depthDataBean = buyData.get(index);
-                vol += depthDataBean.getVolume();
-                depthDataBean.setVolume(vol);
-                mBuyData.add(0, depthDataBean);
-            }
-            if (mBottomPrice.size() >= 2) {
-                mBottomPrice.add(0, mBuyData.get(0).getPrice());
-                if (mBuyData.size() >= 2)
-                    mBottomPrice.add(1, mBuyData.get(mBuyData.size() - 1).getPrice());
-            } else if (mBottomPrice.size() == 1) {
-                mBottomPrice.add(0, mBuyData.get(0).getPrice());
-                if (mBuyData.size() >= 2)
-                    mBottomPrice.add(mBuyData.get(mBuyData.size() - 1).getPrice());
-                else
-                    mBottomPrice.add(mBuyData.get(0).getPrice());
-            } else {
-                mBottomPrice.add(mBuyData.get(0).getPrice());
-                if (mBuyData.size() >= 2)
-                    mBottomPrice.add(mBuyData.get(mBuyData.size() - 1).getPrice());
-                else
-                    mBottomPrice.add(mBuyData.get(0).getPrice());
-            }
-            mMaxVolume = mBuyData.get(0).getVolume();
-        }
-
-        if (sellData.size() > 0) {
-            mSellData.clear();
-            Collections.sort(sellData, new comparePrice());
-            float volsell = 0;
-            for (DepthDataBean depthDataBean : sellData) {
-                volsell += depthDataBean.getVolume();
-                depthDataBean.setVolume(volsell);
-                mSellData.add(depthDataBean);
-            }
-            if (mBottomPrice.size() >= 4) {
-                mBottomPrice.add(2, mSellData.get(0).getPrice());
-                if (mSellData.size() >= 2)
-                    mBottomPrice.add(3, mSellData.get(mSellData.size() - 1).getPrice());
-            } else if (mBottomPrice.size() == 3) {
-                mBottomPrice.add(2, mSellData.get(0).getPrice());
-                if (mSellData.size() >= 2)
-                    mBottomPrice.add(mSellData.get(mSellData.size() - 1).getPrice());
-                else
-                    mBottomPrice.add(mSellData.get(0).getPrice());
-            } else {
-                mBottomPrice.add(mSellData.get(0).getPrice());
-                if (mSellData.size() >= 2)
-                    mBottomPrice.add(mSellData.get(mSellData.size() - 1).getPrice());
-                else
-                    mBottomPrice.add(mSellData.get(0).getPrice());
-            }
-            mMaxVolume = Math.max(mMaxVolume, mSellData.get(mSellData.size() - 1).getVolume());
-        }
-        mMaxVolume = mMaxVolume * 1.05f;
-        mMultiple = mMaxVolume / lineCount;
-        invalidate();
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        mDrawWidth = mWidth / 2;
-        mDrawHeight = mHeight - mLineBottom;
-        mWidth = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
-        mRowSpace = mDrawHeight / lineCount;
-        setMeasuredDimension(mWidth, mHeight);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawColor(ResourceUtil.getColor(getContext(), R.color.chart_background));
+        canvas.drawColor(mBackgroundColor);
         canvas.save();
         drawBuy(canvas);
         drawSell(canvas);
@@ -239,34 +229,29 @@ public class DepthMapView extends View {
     }
 
     private void drawBuy(Canvas canvas) {
-        mGridWidth = (mDrawWidth / (mBuyData.size() - 1 == 0 ? 1 : mBuyData.size() - 1));
+        mGridWidth = (mDrawWidth * 1.0f / (mBuyData.size() - 1 == 0 ? 1 : mBuyData.size() - 1));
         mBuyPath.reset();
-        mapX.clear();
-        mapY.clear();
+        mMapX.clear();
+        mMapY.clear();
+        float x;
+        float y;
         for (int i = 0; i < mBuyData.size(); i++) {
             if (i == 0) {
-                mBuyPath.moveTo(0, (mDrawHeight - (mDrawHeight) * mBuyData.get(0).getVolume() / mMaxVolume));
+                mBuyPath.moveTo(0, getY(mBuyData.get(0).getVolume()));
             }
+            y = getY(mBuyData.get(i).getVolume());
             if (i >= 1) {
-                canvas.drawLine(mGridWidth * (i - 1), mDrawHeight - (mDrawHeight) * mBuyData.get(i - 1).getVolume() / mMaxVolume,
-                        mGridWidth * i, mHeight - (mDrawHeight) * mBuyData.get(i).getVolume() / mMaxVolume - mLineBottom,
-                        mBuyLinePaint);
+                canvas.drawLine(mGridWidth * (i - 1), getY(mBuyData.get(i - 1).getVolume()), mGridWidth * i, y, mBuyLinePaint);
             }
-            if (i != mBuyData.size() - 1) { //深度圖數組繪製
-                mBuyPath.quadTo(mGridWidth * i,
-                        mDrawHeight - (mDrawHeight) * mBuyData.get(i).getVolume() / mMaxVolume,
-                        mGridWidth * (i + 1),
-                        mDrawHeight - (mDrawHeight) * mBuyData.get(i + 1).getVolume() / mMaxVolume);
+            if (i != mBuyData.size() - 1) {
+                mBuyPath.quadTo(mGridWidth * i, y, mGridWidth * (i + 1), getY(mBuyData.get(i + 1).getVolume()));
             }
 
-            float x = mGridWidth * i;
-            float y = mDrawHeight - (mDrawHeight) * mBuyData.get(i).getVolume() / mMaxVolume;
-            mapX.put((int) x, mBuyData.get(i));
-            mapY.put((int) x, y);
+            x = mGridWidth * i;
+            mMapX.put((int) x, mBuyData.get(i));
+            mMapY.put((int) x, y);
             if (i == mBuyData.size() - 1) {
-                mBuyPath.quadTo(mGridWidth * i, mDrawHeight - (mDrawHeight) * mBuyData.get(i).getVolume() / mMaxVolume,
-                        mGridWidth * i, mDrawHeight);
-
+                mBuyPath.quadTo(mGridWidth * i, y, mGridWidth * i, mDrawHeight);
                 mBuyPath.quadTo(mGridWidth * i, mDrawHeight, 0, mDrawHeight);
                 mBuyPath.close();
             }
@@ -275,32 +260,28 @@ public class DepthMapView extends View {
     }
 
     private void drawSell(Canvas canvas) {
-        mGridWidth = (mDrawWidth / (mSellData.size() - 1 == 0 ? 1 : mSellData.size() - 1));
+        mGridWidth = (mDrawWidth * 1.0f / (mSellData.size() - 1 == 0 ? 1 : mSellData.size() - 1));
         mSellPath.reset();
+        float x;
+        float y;
         for (int i = 0; i < mSellData.size(); i++) {
             if (i == 0) {
-                mSellPath.moveTo(mDrawWidth, mDrawHeight - mDrawHeight * mSellData.get(0).getVolume() / mMaxVolume);
+                mSellPath.moveTo(mDrawWidth, getY(mSellData.get(0).getVolume()));
             }
+            y = getY(mSellData.get(i).getVolume());
             if (i >= 1) {
-                canvas.drawLine((mGridWidth * (i - 1)) + mDrawWidth, mDrawHeight - (mDrawHeight) * mSellData.get(i - 1).getVolume() / mMaxVolume,
-                        (mGridWidth * i) + mDrawWidth, mDrawHeight - (mDrawHeight) * mSellData.get(i).getVolume() / mMaxVolume,
-                        mSellLinePaint);
+                canvas.drawLine((mGridWidth * (i - 1)) + mDrawWidth, getY(mSellData.get(i - 1).getVolume()),
+                        (mGridWidth * i) + mDrawWidth, y, mSellLinePaint);
             }
-
-            if (i != mSellData.size() - 1) { //深度圖數組繪製
-                mSellPath.quadTo((mGridWidth * i) + mDrawWidth,
-                        mDrawHeight - (mDrawHeight) * mSellData.get(i).getVolume() / mMaxVolume,
-                        (mGridWidth * (i + 1)) + mDrawWidth,
-                        mDrawHeight - (mDrawHeight) * mSellData.get(i + 1).getVolume() / mMaxVolume);
+            if (i != mSellData.size() - 1) {
+                mSellPath.quadTo((mGridWidth * i) + mDrawWidth, y,
+                        (mGridWidth * (i + 1)) + mDrawWidth, getY(mSellData.get(i + 1).getVolume()));
             }
-
-            float x = (mGridWidth * i) + mDrawWidth;
-            float y = mDrawHeight - (mDrawHeight) * mSellData.get(i).getVolume() / mMaxVolume;
-            mapX.put((int) x, mSellData.get(i));
-            mapY.put((int) x, y);
+            x = (mGridWidth * i) + mDrawWidth;
+            mMapX.put((int) x, mSellData.get(i));
+            mMapY.put((int) x, y);
             if (i == mSellData.size() - 1) {
-                mSellPath.quadTo(mWidth, mDrawHeight - (mDrawHeight) * mSellData.get(i).getVolume() / mMaxVolume,
-                        (mGridWidth * i) + mDrawWidth, mDrawHeight);
+                mSellPath.quadTo(mWidth, y, (mGridWidth * i) + mDrawWidth, mDrawHeight);
                 mSellPath.quadTo((mGridWidth * i) + mDrawWidth, mDrawHeight, mDrawWidth, mDrawHeight);
                 mSellPath.close();
             }
@@ -311,87 +292,61 @@ public class DepthMapView extends View {
     private void drawText(Canvas canvas) {
         float value;
         String str;
-        for (int j = 0; j < lineCount; j++) {
+        for (int j = 0; j < mLineCount; j++) {
             value = mMaxVolume - mMultiple * j;
             str = getVolumeValue(value);
-            canvas.drawText(str, mWidth, mRowSpace * j + 30, mTextPaint);
+            canvas.drawText(str, mWidth, mDrawHeight / mLineCount * j + 30, mTextPaint);
         }
-
-        int size = mBottomPrice.size();
-        int height = mDrawHeight + mLineBottom / 2 + 10;
-        if (size > 0) {
-            String data = getValue(mBottomPrice.get(0));
+        int size = mBottomPrice.length;
+        int height = mDrawHeight + mBottomPriceHeight / 2 + 10;
+        if (size > 0 && mBottomPrice[0] != null) {
+            String data = getValue(mBottomPrice[0]);
             canvas.drawText(data, mTextPaint.measureText(data), height, mTextPaint);
-            if (size > 1) {
-                data = getValue(mBottomPrice.get(1));
-                canvas.drawText(data, mDrawWidth - 10, height, mTextPaint);
-                if (size > 2) {
-                    data = getValue(mBottomPrice.get(2));
-                    canvas.drawText(data, mDrawWidth + mTextPaint.measureText(data) + 10, height, mTextPaint);
-                    if (size > 3) {
-                        data = getValue(mBottomPrice.get(3));
-                        canvas.drawText(data, mWidth, height, mTextPaint);
-                    }
-                }
-            }
+            data = getValue(mBottomPrice[1]);
+            canvas.drawText(data, mDrawWidth - 10, height, mTextPaint);
+            data = getValue(mBottomPrice[2]);
+            canvas.drawText(data, mDrawWidth + mTextPaint.measureText(data) + 10, height, mTextPaint);
+            data = getValue(mBottomPrice[3]);
+            canvas.drawText(data, mWidth, height, mTextPaint);
         }
         if (mIsLongPress) {
             mIsHave = false;
-            for (int key : mapX.keySet()) {
+            for (int key : mMapX.keySet()) {
                 if (key == mEventX) {
-                    mIsHave =true;
                     mLastPosition = mEventX;
-                    if (key < mDrawWidth) {
-                        canvas.drawCircle(key, mapY.get(key), ResourceUtil.dp2px(getContext(), 8), mBuyLinePaint);
-                        mRadioPaint.setColor(ResourceUtil.getColor(getContext(), R.color.depth_line_green));
-                    } else {
-                        canvas.drawCircle(key, mapY.get(key), ResourceUtil.dp2px(getContext(), 8), mSellLinePaint);
-                        mRadioPaint.setColor(ResourceUtil.getColor(getContext(), R.color.depth_line_red));
-                    }
-                    canvas.drawCircle(key, mapY.get(key), ResourceUtil.dp2px(getContext(), 2), mRadioPaint);
-
-                    String volume = getContext().getString(R.string.trust_quantity) + ": " + getVolumeValue(mapX.get(key).getVolume());
-                    String price = getContext().getString(R.string.trust_price) + ": " + getValue(mapX.get(key).getPrice());
-                    float width = Math.max(mTextPaint.measureText(volume), mTextPaint.measureText(price));
-                    Paint.FontMetrics metrics = mTextPaint.getFontMetrics();
-                    float textHeight = metrics.descent - metrics.ascent;
-                    canvas.drawRoundRect(new RectF(mDrawWidth - width / 2 - 10, 0, mDrawWidth + width / 2 + 10, textHeight * 2 + 15), 10, 10, mSelectorBackgroundPaint);
-                    canvas.drawText(getContext().getString(R.string.trust_quantity) + ": ",
-                            mDrawWidth - width / 2 + 5 + mTextPaint.measureText(getContext().getString(R.string.trust_quantity)), textHeight + 2, mTextPaint);
-                    canvas.drawText(getVolumeValue(mapX.get(key).getVolume()), mDrawWidth + width / 2 + 5, textHeight + 2, mTextPaint);
-
-                    canvas.drawText(getContext().getString(R.string.trust_price) + ": ",
-                            mDrawWidth - width / 2 + 5 + mTextPaint.measureText(getContext().getString(R.string.trust_price)), textHeight * 2 + 5, mTextPaint);
-                    canvas.drawText(getValue(mapX.get(key).getPrice()), mDrawWidth + width / 2 + 5, textHeight * 2 + 5, mTextPaint);
-                    return;
+                    drawSelectorView(canvas, key);
+                    break;
                 }
             }
             if (!mIsHave) {
-                mIsHave = true;
-                if (mLastPosition < mDrawWidth) {
-                    canvas.drawCircle(mLastPosition, mapY.get(mLastPosition), ResourceUtil.dp2px(getContext(), 8), mBuyLinePaint);
-                    mRadioPaint.setColor(ResourceUtil.getColor(getContext(), R.color.depth_line_green));
-                } else {
-                    canvas.drawCircle(mLastPosition, mapY.get(mLastPosition), ResourceUtil.dp2px(getContext(), 8), mSellLinePaint);
-                    mRadioPaint.setColor(ResourceUtil.getColor(getContext(), R.color.depth_line_red));
-                }
-                canvas.drawCircle(mLastPosition, mapY.get(mLastPosition), ResourceUtil.dp2px(getContext(), 2), mRadioPaint);
-
-                String volume = getContext().getString(R.string.trust_quantity) + ": " + getVolumeValue(mapX.get(mLastPosition).getVolume());
-                String price = getContext().getString(R.string.trust_price) + ": " + getValue(mapX.get(mLastPosition).getPrice());
-                float width = Math.max(mTextPaint.measureText(volume), mTextPaint.measureText(price));
-                Paint.FontMetrics metrics = mTextPaint.getFontMetrics();
-                float textHeight = metrics.descent - metrics.ascent;
-                canvas.drawRoundRect(new RectF(mDrawWidth - width / 2 - 10, 0, mDrawWidth + width / 2 + 10, textHeight * 2 + 15), 10, 10, mSelectorBackgroundPaint);
-                canvas.drawText(getContext().getString(R.string.trust_quantity) + ": ",
-                        mDrawWidth - width / 2 + 5 + mTextPaint.measureText(getContext().getString(R.string.trust_quantity)), textHeight + 2, mTextPaint);
-                canvas.drawText(getVolumeValue(mapX.get(mLastPosition).getVolume()), mDrawWidth + width / 2 + 5, textHeight + 2, mTextPaint);
-
-                canvas.drawText(getContext().getString(R.string.trust_price) + ": ",
-                        mDrawWidth - width / 2 + 5 + mTextPaint.measureText(getContext().getString(R.string.trust_price)), textHeight * 2 + 5, mTextPaint);
-                canvas.drawText(getValue(mapX.get(mLastPosition).getPrice()), mDrawWidth + width / 2 + 5, textHeight * 2 + 5, mTextPaint);
+                drawSelectorView(canvas, mLastPosition);
             }
         }
+    }
+
+    private void drawSelectorView(Canvas canvas, int position) {
+        mIsHave = true;
+        if (position < mDrawWidth) {
+            canvas.drawCircle(position, mMapY.get(position), mCircleRadius, mBuyLinePaint);
+            mRadioPaint.setColor(ResourceUtil.getColor(getContext(), R.color.depth_buy_line));
+        } else {
+            canvas.drawCircle(position, mMapY.get(position), mCircleRadius, mSellLinePaint);
+            mRadioPaint.setColor(ResourceUtil.getColor(getContext(), R.color.depth_sell_line));
+        }
+        canvas.drawCircle(position, mMapY.get(position), mDotRadius, mRadioPaint);
+
+        String volume = getContext().getString(R.string.trust_quantity) + ": " + getVolumeValue(mMapX.get(position).getVolume());
+        String price = getContext().getString(R.string.trust_price) + ": " + getValue(mMapX.get(position).getPrice());
+        float width = Math.max(mTextPaint.measureText(volume), mTextPaint.measureText(price));
+        Paint.FontMetrics metrics = mTextPaint.getFontMetrics();
+        float textHeight = metrics.descent - metrics.ascent;
+        canvas.drawRoundRect(new RectF(mDrawWidth - width / 2 - 10, 0, mDrawWidth + width / 2 + 10, textHeight * 2 + 15), 10, 10, mSelectorBackgroundPaint);
+        canvas.drawText(getContext().getString(R.string.trust_quantity) + ": ",
+                mDrawWidth - width / 2 + 5 + mTextPaint.measureText(getContext().getString(R.string.trust_quantity)), textHeight + 2, mTextPaint);
+        canvas.drawText(getVolumeValue(mMapX.get(position).getVolume()), mDrawWidth + width / 2 + 5, textHeight + 2, mTextPaint);
+        canvas.drawText(getContext().getString(R.string.trust_price) + ": ",
+                mDrawWidth - width / 2 + 5 + mTextPaint.measureText(getContext().getString(R.string.trust_price)), textHeight * 2 + 5, mTextPaint);
+        canvas.drawText(getValue(mMapX.get(position).getPrice()), mDrawWidth + width / 2 + 5, textHeight * 2 + 5, mTextPaint);
     }
 
     public class comparePrice implements Comparator<DepthDataBean> {
@@ -403,14 +358,18 @@ public class DepthMapView extends View {
         }
     }
 
-    public String getValue(float value) {
+    private float getY(float volume) {
+        return mDrawHeight - (mDrawHeight) * volume / mMaxVolume;
+    }
+
+    private String getValue(float value) {
 //        String value = new BigDecimal(data).toPlainString();
 //        return subZeroAndDot(value);
         return String.format("%." + mPriceLimit + "f", value);
     }
 
     @SuppressLint("DefaultLocale")
-    public String getVolumeValue(float value) {
+    private String getVolumeValue(float value) {
         return String.format("%.4f", value);
     }
 

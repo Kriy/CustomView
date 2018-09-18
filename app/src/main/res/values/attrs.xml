@@ -4,22 +4,25 @@
     <!--时间线TimeLineMarkerView-->
     <declare-styleable name="DepthMapView">
         <!--买入颜色-->
-        <attr name="buy_color" format="color|reference" />
+        <attr name="buy_line_color" format="color|reference" />
         <!--买入区域内部颜色-->
         <attr name="buy_path_color" format="dimension" />
         <!--卖出颜色-->
-        <attr name="sell_color" format="color|reference" />
+        <attr name="sell_line_color" format="color|reference" />
         <!--卖出区域内部颜色-->
         <attr name="sell_path_color" format="dimension" />
         <!--文字颜色-->
         <attr name="text_color" format="color|reference" />
-        <!--选中时文字颜色-->
-        <attr name="selector_text_color" format="color|reference" />
         <!--背景颜色-->
-        <attr name="dm_background_color" format="color|reference" />
-        <!--<attr name="markerSize" format="dimension" />-->
-        <!--横向还是竖向-->
-        <!--<attr name="orientation" format="boolean" />-->
+        <attr name="background_color" format="color|reference" />
+        <!--右侧价格行数-->
+        <attr name="line_count" format="integer" />
+        <!--文字大小-->
+        <attr name="text_size" format="dimension" />
+        <!--圆圈半径-->
+        <attr name="circle_radius" format="dimension" />
+        <!--点的半径-->
+        <attr name="dot_radius" format="dimension" />
     </declare-styleable>
 
     <!--时间线TimeLineMarkerView-->

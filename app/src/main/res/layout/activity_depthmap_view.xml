@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.lemon.customview.DepthMapView
         android:id="@+id/depth_view"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="200dp"
+        app:buy_line_color="@color/depth_buy_line"
+        app:buy_path_color="@color/depth_buy_path"
+        app:background_color="@color/depth_background"
+        app:line_count="4"
+        app:circle_radius="8dp"
+        app:dot_radius="1.5dp"
+        app:sell_line_color="@color/depth_sell_line"
+        app:sell_path_color="@color/depth_sell_path"
+        app:text_color="@color/depth_text_color"
+        app:text_size="10sp" />
 
 </RelativeLayout>

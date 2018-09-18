@@ -20,10 +20,12 @@
     <color name="chart_tab_background">#80101724</color>
     <color name="chart_tab_indicator">#fff</color>
 
-    <color name="depth_line_green">#1ABB77</color>
-    <color name="depth_line_red">#E75A35</color>
-    <color name="depth_path_green">#0F3031</color>
-    <color name="depth_path_red">#2E2227</color>
+    <color name="depth_background">#101724</color>
+    <color name="depth_text_color">#587094</color>
+    <color name="depth_buy_line">#1ABB77</color>
+    <color name="depth_sell_line">#E75A35</color>
+    <color name="depth_buy_path">#0F3031</color>
+    <color name="depth_sell_path">#2E2227</color>
     <color name="depth_selector">#DA30343C</color>
 
 </resources>
