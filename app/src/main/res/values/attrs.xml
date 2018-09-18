@@ -6,15 +6,19 @@
         <!--买入颜色-->
         <attr name="buy_line_color" format="color|reference" />
         <!--买入区域内部颜色-->
-        <attr name="buy_path_color" format="dimension" />
+        <attr name="buy_path_color" format="color|reference" />
         <!--卖出颜色-->
         <attr name="sell_line_color" format="color|reference" />
         <!--卖出区域内部颜色-->
-        <attr name="sell_path_color" format="dimension" />
+        <attr name="sell_path_color" format="color|reference" />
+        <!--线条宽度-->
+        <attr name="line_width" format="dimension" />
         <!--文字颜色-->
         <attr name="text_color" format="color|reference" />
         <!--背景颜色-->
         <attr name="background_color" format="color|reference" />
+        <!--选中后文字背景颜色-->
+        <attr name="selector_background_color" format="color|reference" />
         <!--右侧价格行数-->
         <attr name="line_count" format="integer" />
         <!--文字大小-->

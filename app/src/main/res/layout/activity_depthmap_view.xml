@@ -1,22 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.lemon.customview.DepthMapView
         android:id="@+id/depth_view"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        app:background_color="@color/depth_background"
         app:buy_line_color="@color/depth_buy_line"
         app:buy_path_color="@color/depth_buy_path"
-        app:background_color="@color/depth_background"
-        app:line_count="4"
         app:circle_radius="8dp"
         app:dot_radius="1.5dp"
+        app:line_count="4"
+        app:line_width="1.5dp"
         app:sell_line_color="@color/depth_sell_line"
         app:sell_path_color="@color/depth_sell_path"
         app:text_color="@color/depth_text_color"
         app:text_size="10sp" />
 
-</RelativeLayout>
+    <com.lemon.customview.DepthMapView
+        android:id="@+id/depth_view1"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="30dp"
+        app:background_color="@android:color/white"
+        app:buy_line_color="#5570a800"
+        app:buy_path_color="#55bcd688"
+        app:circle_radius="8dp"
+        app:dot_radius="1.5dp"
+        app:line_count="5"
+        app:line_width="1dp"
+        app:selector_background_color="#55ffa0a8"
+        app:sell_line_color="#55ff6c78"
+        app:sell_path_color="#55ffa0a8"
+        app:text_color="@android:color/black"
+        app:text_size="10sp" />
+
+</LinearLayout>
