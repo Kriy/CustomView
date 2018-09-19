@@ -160,14 +160,17 @@ public class DepthMapView extends View {
         float vol = 0;
         if (buyData.size() > 0) {
             mBuyData.clear();
+            //买入数据按价格进行排序
             Collections.sort(buyData, new comparePrice());
             DepthDataBean depthDataBean;
+            //累加买入委托量
             for (int index = buyData.size() - 1; index >= 0; index--) {
                 depthDataBean = buyData.get(index);
                 vol += depthDataBean.getVolume();
                 depthDataBean.setVolume(vol);
                 mBuyData.add(0, depthDataBean);
             }
+            //修改底部买入价格展示
             mBottomPrice[0] = mBuyData.get(0).getPrice();
             mBottomPrice[1] = mBuyData.get(mBuyData.size() > 1 ? mBuyData.size() - 1 : 0).getPrice();
             mMaxVolume = mBuyData.get(0).getVolume();
@@ -176,12 +179,15 @@ public class DepthMapView extends View {
         if (sellData.size() > 0) {
             mSellData.clear();
             vol = 0;
+            //卖出数据按价格进行排序
             Collections.sort(sellData, new comparePrice());
+            //累加卖出委托量
             for (DepthDataBean depthDataBean : sellData) {
                 vol += depthDataBean.getVolume();
                 depthDataBean.setVolume(vol);
                 mSellData.add(depthDataBean);
             }
+            //修改底部卖出价格展示
             mBottomPrice[2] = mSellData.get(0).getPrice();
             mBottomPrice[3] = mSellData.get(mSellData.size() > 1 ? mSellData.size() - 1 : 0).getPrice();
             mMaxVolume = Math.max(mMaxVolume, mSellData.get(mSellData.size() - 1).getVolume());
@@ -222,8 +228,11 @@ public class DepthMapView extends View {
         super.onDraw(canvas);
         canvas.drawColor(mBackgroundColor);
         canvas.save();
+        //绘制买入区域
         drawBuy(canvas);
+        //绘制卖出区域
         drawSell(canvas);
+        //绘制界面相关文案
         drawText(canvas);
         canvas.restore();
     }
@@ -326,14 +335,16 @@ public class DepthMapView extends View {
 
     private void drawSelectorView(Canvas canvas, int position) {
         mIsHave = true;
+        Float y = mMapY.get(position);
+        if (y == null) return;
         if (position < mDrawWidth) {
-            canvas.drawCircle(position, mMapY.get(position), mCircleRadius, mBuyLinePaint);
+            canvas.drawCircle(position, y, mCircleRadius, mBuyLinePaint);
             mRadioPaint.setColor(ResourceUtil.getColor(getContext(), R.color.depth_buy_line));
         } else {
-            canvas.drawCircle(position, mMapY.get(position), mCircleRadius, mSellLinePaint);
+            canvas.drawCircle(position, y, mCircleRadius, mSellLinePaint);
             mRadioPaint.setColor(ResourceUtil.getColor(getContext(), R.color.depth_sell_line));
         }
-        canvas.drawCircle(position, mMapY.get(position), mDotRadius, mRadioPaint);
+        canvas.drawCircle(position, y, mDotRadius, mRadioPaint);
 
         String volume = getContext().getString(R.string.trust_quantity) + ": " + getVolumeValue(mMapX.get(position).getVolume());
         String price = getContext().getString(R.string.trust_price) + ": " + getValue(mMapX.get(position).getPrice());

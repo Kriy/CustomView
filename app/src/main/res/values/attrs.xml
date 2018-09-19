@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--时间线TimeLineMarkerView-->
+    <!--深度图DepthMapView-->
     <declare-styleable name="DepthMapView">
         <!--买入颜色-->
         <attr name="buy_line_color" format="color|reference" />
