@@ -8,18 +8,15 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.TintTypedArray;
-import android.text.InputFilter;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.TextClock;
 
 import com.lemon.customview.R;
 import com.lemon.customview.utils.ResourceUtil;
 
 import java.util.List;
-import java.util.Map;
 
 public class MarqueeView extends View implements Runnable {
 
@@ -104,7 +101,7 @@ public class MarqueeView extends View implements Runnable {
         });
     }
 
-    private void stopRoll() {
+    public void stopRoll() {
         mIsRoll = false;
         if (mThread != null) {
             mThread.interrupt();
@@ -112,7 +109,7 @@ public class MarqueeView extends View implements Runnable {
         }
     }
 
-    private void continueRoll() {
+    public void continueRoll() {
         if (!mIsRoll) {
             if (mThread != null) {
                 mThread.interrupt();

@@ -45,6 +45,7 @@
         <attr name="orientation" format="boolean" />
     </declare-styleable>
 
+    <!--跑马灯-->
     <declare-styleable name="MarqueeView">
         <attr name="marqueeview_repet_type" format="enum">
             <enum name="repet_oncetime" value="0" /><!-- 播放一次 -->

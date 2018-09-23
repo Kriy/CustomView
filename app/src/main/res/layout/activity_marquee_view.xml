@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_control0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="内容添加" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_control4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2颜色" />
+
+        <Button
+            android:id="@+id/bt_control24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2大小" />
+
+        <Button
+            android:id="@+id/bt_control23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2速度" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_control"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3继续" />
+
+        <Button
+            android:id="@+id/bt_control2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3停止" />
+
+        <Button
+            android:id="@+id/bt_control00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3间距变大" />
+    </LinearLayout>
+
+
+    <com.lemon.customview.widget.MarqueeView
+        android:id="@+id/mv_main1"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/colorAccent"
+        app:marqueeview_is_resetLocation="false"
+        app:marqueeview_repet_type="repet_oncetime"
+        app:marqueeview_text_distance="30"
+        app:marqueeview_text_size="10"
+        app:marqueeview_text_speed="3" />
+
+    <com.lemon.customview.widget.MarqueeView
+        android:id="@+id/mv_main2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/colorPrimary"
+        app:marqueeview_is_resetLocation="false"
+        app:marqueeview_isclickalbe_stop="true"
+        app:marqueeview_repet_type="repet_interval"
+        app:marqueeview_text_speed="2"
+        app:marqueeview_text_startlocationdistance="0.5" />
+
+    <com.lemon.customview.widget.MarqueeView
+        android:id="@+id/mv_main3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        app:marqueeview_repet_type="repet_continuous"
+        app:marqueeview_text_size="15"
+        app:marqueeview_text_speed="2" />
+
+</LinearLayout>
