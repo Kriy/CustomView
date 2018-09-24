@@ -38,11 +38,11 @@ public class MarqueeViewActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        content2 = "让我掉下眼泪的，不止昨夜的酒";
-        content3 = "窥天意竭心力，皆为吾主……";
-        list1.add("风起日落，天行有常");
-        list1.add("欲别去归隐，不复奢望");
-        list1.add("只盼明日，能共沐晨光");
+        list1.add("北冥有鱼   其名为鲲");
+        list1.add("鲲之大  不知其几千里也；  化而为鸟    其名为鹏");
+        list1.add("故夫知效一官，  行比一乡，  德合一君，");
+        content2 = "要么孤独,要么庸俗 ";
+        content3 = "你在桥上看风景 看风景的人 在楼上看你";
     }
 
     @OnClick({R.id.bt_control0, R.id.bt_control4, R.id.bt_control24, R.id.bt_control23, R.id.bt_control, R.id.bt_control2, R.id.bt_control00})

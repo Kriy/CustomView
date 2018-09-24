@@ -76,7 +76,7 @@
         android:layout_marginTop="40dp"
         android:background="@color/colorAccent"
         app:marqueeview_is_resetLocation="false"
-        app:marqueeview_repet_type="repet_oncetime"
+        app:marqueeview_repeat_type="repeat_onetime"
         app:marqueeview_text_distance="30"
         app:marqueeview_text_size="10"
         app:marqueeview_text_speed="3" />
@@ -89,16 +89,15 @@
         android:background="@color/colorPrimary"
         app:marqueeview_is_resetLocation="false"
         app:marqueeview_isclickalbe_stop="true"
-        app:marqueeview_repet_type="repet_interval"
-        app:marqueeview_text_speed="2"
-        app:marqueeview_text_startlocationdistance="0.5" />
+        app:marqueeview_repeat_type="repeat_interval"
+        app:marqueeview_text_speed="2" />
 
     <com.lemon.customview.widget.MarqueeView
         android:id="@+id/mv_main3"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="30dp"
-        app:marqueeview_repet_type="repet_continuous"
+        app:marqueeview_repeat_type="repeat_continue"
         app:marqueeview_text_size="15"
         app:marqueeview_text_speed="2" />
 

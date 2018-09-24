@@ -22,9 +22,9 @@ public class MarqueeView extends View implements Runnable {
 
     private static final String TAG = "MarqueeView";
 
-    public static final int REPET_ONCETIME = 0;//一次结束
-    public static final int REPET_INTERVAL = 1;//一次结束以后，再继续第二次
-    public static final int REPET_CONTINUOUS = 2;//紧接着 滚动第二次
+    public static final int REPEAT_ONETIME = 0;//一次结束
+    public static final int REPEAT_INTERVAL = 1;//一次结束以后，再继续第二次
+    public static final int REPEAT_CONTINUOUS = 2;//紧接着 滚动第二次
 
     private String mContent;
     private float mSpeed = 1;
@@ -34,7 +34,7 @@ public class MarqueeView extends View implements Runnable {
     private int mTextDistance1 = 10;
     private String mBlackCount = "";
 
-    private int mRepetType = REPET_INTERVAL;
+    private int mRepeatType = REPEAT_INTERVAL;
     private float mStartLocationDistance = 1.0f;
     private boolean mIsClickStop = false;
     private boolean mIsResetLocation = true;
@@ -44,7 +44,7 @@ public class MarqueeView extends View implements Runnable {
     private float mOneBlackWidth;
     private TextPaint mPaint;
     private Rect mRect;
-    private int mRepetCount = 0;
+    private int mRepeatCount = 0;
     private boolean mResetInit = true;
     private Thread mThread;
     private String mStringContent = "";
@@ -74,7 +74,7 @@ public class MarqueeView extends View implements Runnable {
         mTextSize = tintTypedArray.getFloat(R.styleable.MarqueeView_marqueeview_text_size, mTextSize);
         mTextDistance1 = tintTypedArray.getInteger(R.styleable.MarqueeView_marqueeview_text_distance, mTextDistance1);
         mStartLocationDistance = tintTypedArray.getFloat(R.styleable.MarqueeView_marqueeview_text_startlocationdistance, mStartLocationDistance);
-        mRepetType = tintTypedArray.getInt(R.styleable.MarqueeView_marqueeview_repet_type, mRepetType);
+        mRepeatType = tintTypedArray.getInt(R.styleable.MarqueeView_marqueeview_repeat_type, mRepeatType);
         tintTypedArray.recycle();
     }
 
@@ -136,20 +136,20 @@ public class MarqueeView extends View implements Runnable {
             mResetInit = false;
         }
 
-        switch (mRepetType) {
-            case REPET_ONCETIME:
+        switch (mRepeatType) {
+            case REPEAT_ONETIME:
                 if (mContentWidth < (-mXlocation))
                     stopRoll();
                 break;
-            case REPET_INTERVAL:
-                if (mContentWidth <= mXlocation)
+            case REPEAT_INTERVAL:
+                if (mXlocation <= -mContentWidth)
                     mXlocation = getWidth();
                 break;
-            case REPET_CONTINUOUS:
+            case REPEAT_CONTINUOUS:
                 if (mXlocation < 0) {
                     int beAppend = (int) ((-mXlocation) / mContentWidth);
-                    if (beAppend >= mRepetCount) {
-                        mRepetCount++;
+                    if (beAppend >= mRepeatCount) {
+                        mRepeatCount++;
                         mContent += mStringContent;
                     }
                 }
@@ -165,7 +165,7 @@ public class MarqueeView extends View implements Runnable {
     }
 
     public void setRepetType(int repetType) {
-        this.mRepetType = repetType;
+        this.mRepeatType = repetType;
         mResetInit = true;
         setContent(mStringContent);
     }
@@ -244,7 +244,7 @@ public class MarqueeView extends View implements Runnable {
     }
 
     public void setContinueAble(int isContinueAble) {
-        this.mRepetType = isContinueAble;
+        this.mRepeatType = isContinueAble;
     }
 
     private void setResetLocation(boolean isReset) {
@@ -253,53 +253,48 @@ public class MarqueeView extends View implements Runnable {
 
     public void setContent(List<String> strings) {
         setTextDistance(mTextDistance1);
-        String temString = "";
+        StringBuilder temString = new StringBuilder();
         if (strings != null && strings.size() != 0) {
             for (int i = 0; i < strings.size(); i++) {
-                temString = temString + strings.get(i) + mBlackCount;
+                temString.append(strings.get(i)).append(mBlackCount);
             }
         }
-        setContent(temString);
+        setContent(temString.toString());
     }
 
-    public void setContent(String content2) {
-        if (TextUtils.isEmpty(content2)) {
+    public void setContent(String content) {
+        if (TextUtils.isEmpty(content)) {
             return;
         }
         if (mIsResetLocation) {//控制重新设置文本内容的时候，是否初始化xLocation。
             mXlocation = getWidth() * mStartLocationDistance;
         }
-        if (!content2.endsWith(mBlackCount)) {
-            content2 = content2 + mBlackCount;//避免没有后缀
+        if (!content.endsWith(mBlackCount)) {
+            content = content + mBlackCount;//避免没有后缀
         }
-        this.mStringContent = content2;
-
+        this.mStringContent = content;
         //这里需要计算宽度啦，当然要根据模式来搞
-        if (mRepetType == REPET_CONTINUOUS) {
-//如果说是循环的话，则需要计算 文本的宽度 ，然后再根据屏幕宽度 ， 看能一个屏幕能盛得下几个文本
-
+        if (mRepeatType == REPEAT_CONTINUOUS) {
+            //如果说是循环的话，则需要计算 文本的宽度 ，然后再根据屏幕宽度 ， 看能一个屏幕能盛得下几个文本
             mContentWidth = (int) (getContentWidth(mStringContent) + mTextDistance);//可以理解为一个单元内容的长度
             //从0 开始计算重复次数了， 否则到最后 会跨不过这个坎而消失。
-            mRepetCount = 0;
+            mRepeatCount = 0;
             int contentCount = (getWidth() / mContentWidth) + 2;
             this.mContent = "";
             for (int i = 0; i <= contentCount; i++) {
                 this.mContent += this.mStringContent;//根据重复次数去叠加。
             }
-
         } else {
-            if (mXlocation < 0 && mRepetType == REPET_ONCETIME) {
+            if (mXlocation < 0 && mRepeatType == REPEAT_ONETIME) {
                 if (-mXlocation > mContentWidth) {
                     mXlocation = getWidth() * mStartLocationDistance;
                 }
             }
             mContentWidth = (int) getContentWidth(mStringContent);
-            this.mContent = content2;
+            this.mContent = content;
         }
         if (!mIsRoll) {//如果没有在滚动的话，重新开启线程滚动
             continueRoll();
         }
-
-
     }
 }

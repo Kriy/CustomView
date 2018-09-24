@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, TimeLineMarkerViewActivity.class));
                 break;
             case R.id.btn_marquee:
-                startActivity(new Intent(MainActivity.this, TimeLineMarkerViewActivity.class));
+                startActivity(new Intent(MainActivity.this, MarqueeViewActivity.class));
                 break;
         }
     }
