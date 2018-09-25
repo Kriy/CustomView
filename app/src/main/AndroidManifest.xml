@@ -26,8 +26,13 @@
             android:name=".activity.TimeLineMarkerViewActivity"
             android:label="时间线"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.MarqueeViewActivity"
+        <activity
+            android:name=".activity.MarqueeViewActivity"
             android:label="跑马灯"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SlantedTextViewActivity"
+            android:label="倾斜textview"
             android:screenOrientation="portrait" />
     </application>
 

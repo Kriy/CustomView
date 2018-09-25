@@ -28,4 +28,20 @@
     <color name="depth_sell_path">#2E2227</color>
     <color name="depth_selector">#DA30343C</color>
 
+    <color name="primary">#607D8B</color>
+    <color name="primary_dark">#455A64</color>
+    <color name="primary_light">#CFD8DC</color>
+    <color name="accent">#9E9E9E</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#B6B6B6</color>
+
+    <color name="slanted_c2">#C2185B</color>
+    <color name="slanted_e9">#e91e63</color>
+    <color name="slanted_ff">#ff5252</color>
+    <color name="slanted_72">#727272</color>
+    <color name="slanted_4c">#4caf50</color>
+    <color name="slanted_fb">#fbc02d</color>
+
 </resources>

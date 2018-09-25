@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".activity.SlantedTextViewActivity">
+
+    <ImageView
+        android:id="@+id/left_img"
+        android:layout_width="@dimen/img_width"
+        android:layout_height="@dimen/img_height"
+        android:layout_marginBottom="20dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/test" />
+
+    <com.lemon.customview.widget.SlantedTextView
+        android:id="@+id/left_text"
+        android:layout_width="@dimen/text_height"
+        android:layout_height="@dimen/text_height"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        app:slantedBackgroundColor="@color/primary"
+        app:slantedLength="@dimen/text_slanted"
+        app:slantedMode="left"
+        app:slantedText="Android"
+        app:slantedTextColor="@color/primary_light"
+        app:slantedTextSize="10sp" />
+
+    <ImageView
+        android:id="@+id/right_img"
+        android:layout_width="@dimen/img_width"
+        android:layout_height="@dimen/img_height"
+        android:layout_below="@id/left_img"
+        android:scaleType="fitXY"
+        android:src="@mipmap/test" />
+
+    <com.lemon.customview.widget.SlantedTextView
+        android:layout_width="@dimen/text_height"
+        android:layout_height="@dimen/text_height"
+        android:layout_alignBottom="@+id/right_img"
+        android:layout_alignParentStart="true"
+        app:slantedBackgroundColor="#ffff00"
+        app:slantedLength="@dimen/text_slanted"
+        app:slantedMode="left_bottom"
+        app:slantedText="IOS"
+        app:slantedTextColor="@color/primary"
+        app:slantedTextSize="10sp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="@dimen/img_width"
+        android:layout_height="@dimen/img_height"
+        android:layout_below="@id/right_img"
+        android:layout_marginTop="20dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/test" />
+
+    <com.lemon.customview.widget.SlantedTextView
+        android:id="@+id/test"
+        android:layout_width="@dimen/text_height"
+        android:layout_height="@dimen/text_height"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/imageView"
+        app:slantedBackgroundColor="@color/slanted_4c"
+        app:slantedLength="@dimen/text_slanted"
+        app:slantedMode="left_triangle"
+        app:slantedText="PHP"
+        app:slantedTextSize="10sp" />
+
+    <ImageView
+        android:id="@+id/img_left_bt_tri"
+        android:layout_width="@dimen/img_width"
+        android:layout_height="@dimen/img_height"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imageView"
+        android:layout_marginTop="20dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/test" />
+
+    <com.lemon.customview.widget.SlantedTextView
+        android:id="@+id/slv_left_bt_tri"
+        android:layout_width="@dimen/text_height"
+        android:layout_height="@dimen/text_height"
+        android:layout_alignBottom="@+id/img_left_bt_tri"
+        android:layout_alignParentStart="true"
+        app:slantedBackgroundColor="@color/slanted_c2"
+        app:slantedLength="@dimen/text_slanted"
+        app:slantedMode="left_bottom_triangle"
+        app:slantedText="WEB"
+        app:slantedTextSize="10sp" />
+
+    <ImageView
+        android:id="@+id/img_right"
+        android:layout_width="@dimen/img_width"
+        android:layout_height="@dimen/img_height"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/left_img"
+        android:scaleType="fitXY"
+        android:src="@mipmap/test" />
+
+    <com.lemon.customview.widget.SlantedTextView
+        android:id="@+id/slv_right"
+        android:layout_width="@dimen/text_height"
+        android:layout_height="@dimen/text_height"
+        android:layout_alignEnd="@+id/img_right"
+        android:layout_alignTop="@+id/img_right"
+        app:slantedBackgroundColor="@color/slanted_72"
+        app:slantedLength="@dimen/text_slanted"
+        app:slantedMode="right"
+        app:slantedText="C++"
+        app:slantedTextSize="10sp" />
+
+    <ImageView
+        android:id="@+id/img_right_tri"
+        android:layout_width="@dimen/img_width"
+        android:layout_height="@dimen/img_height"
+        android:layout_above="@+id/imageView"
+        android:layout_alignParentEnd="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/test" />
+
+    <com.lemon.customview.widget.SlantedTextView
+        android:id="@+id/slv_right_tri"
+        android:layout_width="@dimen/text_height"
+        android:layout_height="@dimen/text_height"
+        android:layout_alignEnd="@+id/img_right_tri"
+        android:layout_alignBottom="@+id/img_right_tri"
+        app:slantedBackgroundColor="@color/slanted_e9"
+        app:slantedLength="@dimen/text_slanted"
+        app:slantedMode="right_bottom"
+        app:slantedText="C"
+        app:slantedTextSize="10sp" />
+
+    <ImageView
+        android:id="@+id/img_right_bt"
+        android:layout_width="@dimen/img_width"
+        android:layout_height="@dimen/img_height"
+        android:layout_above="@+id/img_left_bt_tri"
+        android:layout_alignParentEnd="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/test" />
+
+    <com.lemon.customview.widget.SlantedTextView
+        android:id="@+id/slv_right_bt"
+        android:layout_width="@dimen/text_height"
+        android:layout_height="@dimen/text_height"
+        android:layout_alignTop="@+id/img_right_bt"
+        android:layout_alignParentEnd="true"
+        app:slantedBackgroundColor="@color/slanted_fb"
+        app:slantedLength="@dimen/text_slanted"
+        app:slantedMode="right_triangle"
+        app:slantedText="JS"
+        app:slantedTextSize="10sp" />
+
+    <ImageView
+        android:id="@+id/img_right_bt_tri"
+        android:layout_width="@dimen/img_width"
+        android:layout_height="@dimen/img_height"
+        android:layout_alignStart="@+id/img_right_bt"
+        android:layout_alignTop="@+id/img_left_bt_tri"
+        android:scaleType="fitXY"
+        android:src="@mipmap/test" />
+
+    <com.lemon.customview.widget.SlantedTextView
+        android:id="@+id/slv_right_bt_tri"
+        android:layout_width="@dimen/text_height"
+        android:layout_height="@dimen/text_height"
+        android:layout_alignBottom="@+id/img_right_bt_tri"
+        android:layout_alignParentEnd="true"
+        app:slantedBackgroundColor="@color/slanted_ff"
+        app:slantedLength="@dimen/text_slanted"
+        app:slantedMode="right_bottom_triangle"
+        app:slantedText="SWIFT"
+        app:slantedTextSize="10sp" />
+
+</RelativeLayout>

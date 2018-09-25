@@ -34,6 +34,14 @@
             android:background="@color/chart_text"
             android:text="跑马灯" />
 
+        <Button
+            android:id="@+id/btn_slanted"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/chart_text"
+            android:text="倾斜textview" />
+
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>
