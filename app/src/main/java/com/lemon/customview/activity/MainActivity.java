@@ -19,8 +19,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-
-    @OnClick({R.id.btn_depth, R.id.btn_time, R.id.btn_marquee, R.id.btn_slanted})
+    @OnClick({R.id.btn_depth, R.id.btn_time, R.id.btn_marquee, R.id.btn_slanted, R.id.btn_keyboard})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_depth:
@@ -34,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btn_slanted:
                 startActivity(new Intent(MainActivity.this, SlantedTextViewActivity.class));
+                break;
+            case R.id.btn_keyboard:
+                startActivity(new Intent(MainActivity.this, KeyboardActivity.class));
                 break;
         }
     }

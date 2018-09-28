@@ -42,6 +42,14 @@
             android:background="@color/chart_text"
             android:text="倾斜textview" />
 
+        <Button
+            android:id="@+id/btn_keyboard"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/chart_text"
+            android:text="自定义数字键盘" />
+
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>
