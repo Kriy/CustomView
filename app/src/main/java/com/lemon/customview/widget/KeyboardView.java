@@ -17,11 +17,10 @@ public class KeyboardView extends RelativeLayout {
 
     private MyAdapter mAdapter;
     private String[] keys = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "0", "完成"};
-    private static final int TYPE_COMMON = 996;
-    private static final int TYPE_DELETE = 965;
+    private static final int TYPE_COMMON = 0x0001;
+    private static final int TYPE_DELETE = 0x0002;
 
     private OnItemClickListener mOnItemClickListener;
-
 
     public KeyboardView(Context context) {
         this(context, null);
@@ -36,27 +35,6 @@ public class KeyboardView extends RelativeLayout {
         init();
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int width = MeasureSpec.getSize(widthMeasureSpec);
-        int height = MeasureSpec.getSize(heightMeasureSpec);
-
-        int customWidth = 400;
-        int customHeight = ResourceUtil.dp2px(getContext(), 205f);
-
-
-        // 当布局参数设置为wrap_content时，设置默认值
-        if (getLayoutParams().width == ViewGroup.LayoutParams.WRAP_CONTENT && getLayoutParams().height == ViewGroup.LayoutParams.WRAP_CONTENT) {
-            setMeasuredDimension(customWidth, customHeight);
-            // 宽 / 高任意一个布局参数为= wrap_content时，都设置默认值
-        } else if (getLayoutParams().width == ViewGroup.LayoutParams.WRAP_CONTENT) {
-            setMeasuredDimension(customWidth, height);
-        } else if (getLayoutParams().height == ViewGroup.LayoutParams.WRAP_CONTENT) {
-            setMeasuredDimension(width, customHeight);
-        }
-    }
-
     private void init() {
         View view = View.inflate(getContext(), R.layout.layout_keyboard, null);
         addView(view, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -69,7 +47,7 @@ public class KeyboardView extends RelativeLayout {
 
     private static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public MyViewHolder(View itemView) {
+        MyViewHolder(View itemView) {
             super(itemView);
         }
     }
