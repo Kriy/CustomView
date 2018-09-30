@@ -38,6 +38,10 @@
             android:name=".activity.KeyboardActivity"
             android:label="自定义数字键盘"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.VerifyCodeViewActivity"
+            android:label="验证码输入框"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
