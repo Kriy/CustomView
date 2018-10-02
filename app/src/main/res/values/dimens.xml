@@ -10,4 +10,8 @@
     <dimen name="img_height">88dp</dimen>
     <dimen name="text_height">48dp</dimen>
     <dimen name="text_slanted">28dp</dimen>
+
+    <dimen name="verify_code_text_size">8sp</dimen>
+    <dimen name="verify_code_margin">16dp</dimen>
+
 </resources>

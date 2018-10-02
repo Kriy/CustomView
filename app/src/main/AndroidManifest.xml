@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.VerifyCodeViewActivity"
+            android:name=".activity.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,10 +38,10 @@
             android:name=".activity.KeyboardActivity"
             android:label="自定义数字键盘"
             android:screenOrientation="portrait" />
-        <!--<activity-->
-            <!--android:name=".activity.VerifyCodeViewActivity"-->
-            <!--android:label="验证码输入框"-->
-            <!--android:screenOrientation="portrait" />-->
+        <activity
+            android:name=".activity.VerifyCodeViewActivity"
+            android:label="验证码输入框"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

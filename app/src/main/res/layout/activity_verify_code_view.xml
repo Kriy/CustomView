@@ -1,13 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <com.lemon.customview.widget.VerifyCodeView
-        android:id="@+id/verifycode1"
+        android:id="@+id/verify_code_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="30dp" />
+
+    <com.lemon.customview.widget.VerifyCodeView
+        android:id="@+id/verify_code_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        app:verifyCodeMargin="30dp"
+        app:verifyCodeTextSize="5sp" />
+
+    <com.lemon.customview.widget.VerifyCodeView
+        android:id="@+id/verify_code_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:verifyCodeBackground="@drawable/cell_edit_bg"
+        app:verifyCodeCount="4"
+        app:verifyCodeTextSize="16sp" />
+
+    <com.lemon.customview.widget.VerifyCodeView
+        android:id="@+id/verify_code_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:verifyCodeBackground="@drawable/cell_edit_bg1"
+        app:verifyCodeCount="5"
+        app:verifyCodeTextColor="#ff5252"
+        app:verifyCodeTextSize="12sp" />
 
 </LinearLayout>

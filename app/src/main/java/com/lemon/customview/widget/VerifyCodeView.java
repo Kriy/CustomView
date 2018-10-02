@@ -4,9 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.method.DigitsKeyListener;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +25,10 @@ import com.lemon.customview.utils.ResourceUtil;
 public class VerifyCodeView extends RelativeLayout {
 
     private int mCount = 6;
+    private int mBackground;
     private int mTextColor;
-    private float mTextSize;
+    private float mTextSize = 26;
+    private float mMargin = 16f;
 
     private TextView[] mTextViews = new TextView[mCount];
     private String mInputContent = "";
@@ -47,33 +51,38 @@ public class VerifyCodeView extends RelativeLayout {
 
     private void initAttribute(Context context, AttributeSet attrs) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.VerifyCodeView);
-        mCount = typedArray.getInteger(R.styleable.VerifyCodeView_count, 6);
-        mTextColor = typedArray.getColor(R.styleable.VerifyCodeView_textColor, Color.parseColor("#CED1F3"));
-        mTextSize = typedArray.getFloat(R.styleable.VerifyCodeView_textSize, 26f);
-
+        mCount = typedArray.getInteger(R.styleable.VerifyCodeView_verifyCodeCount, mCount);
+        mTextColor = typedArray.getColor(R.styleable.VerifyCodeView_verifyCodeTextColor, Color.parseColor("#000000"));
+        mTextSize = typedArray.getDimension(R.styleable.VerifyCodeView_verifyCodeTextSize, ResourceUtil.getDimension(context, R.dimen.verify_code_text_size));
+        mBackground = typedArray.getResourceId(R.styleable.VerifyCodeView_verifyCodeBackground, R.drawable.cell_edit_bg);
+        mMargin = typedArray.getDimension(R.styleable.VerifyCodeView_verifyCodeMargin, ResourceUtil.getDimension(context, R.dimen.verify_code_margin));
         typedArray.recycle();
     }
 
     private void addView(Context context) {
-//        mPaint.setTextSize(ResourceUtil.dp2px(getContext(), mTextSize));
-
         View.inflate(context, R.layout.view_verify_code, this);
-        int width = (context.getResources().getDisplayMetrics().widthPixels - ResourceUtil.dp2px(context, 16f) * 7) / mCount;
+        int width = ((context.getResources().getDisplayMetrics().widthPixels - (int) mMargin * (mCount + 1))) / mCount;
         LinearLayout llVerity = (LinearLayout) findViewById(R.id.ll_verity);
-        View child;
+        TextView child;
         LinearLayout.LayoutParams layoutParams;
         for (int i = 0; i < mCount; i++) {
-            child = llVerity.getChildAt(i);
+            child = new TextView(context);
+            child.setTextSize(mTextSize);
+            child.setTextColor(mTextColor);
+            child.setBackgroundResource(mBackground);
+            child.setGravity(Gravity.CENTER);
+            llVerity.addView(child);
             layoutParams = (LinearLayout.LayoutParams) child.getLayoutParams();
+            layoutParams.setMarginStart((int) mMargin);
             layoutParams.width = width;
             layoutParams.height = width;
             child.setLayoutParams(layoutParams);
-            mTextViews[i] = (TextView) llVerity.getChildAt(i);
+            mTextViews[i] = child;
         }
         mEtInput = (EditText) findViewById(R.id.et_input);
-        ViewGroup.LayoutParams layoutParams1 = mEtInput.getLayoutParams();
-        layoutParams1.height = width;
-        mEtInput.setLayoutParams(layoutParams1);
+        ViewGroup.LayoutParams etInputLayoutParams = mEtInput.getLayoutParams();
+        etInputLayoutParams.height = width;
+        mEtInput.setLayoutParams(etInputLayoutParams);
 
         mTextViews[0].setSelected(true);
     }
@@ -92,14 +101,14 @@ public class VerifyCodeView extends RelativeLayout {
                     }
                 }
                 for (int i = 0; i < mCount; i++) {
-                    mTextViews[0].setSelected(false);
+                    mTextViews[i].setSelected(false);
                     if (i < mInputContent.length())
                         mTextViews[i].setText(mInputContent.charAt(i) + "");
                     else
                         mTextViews[i].setText("");
                 }
                 if ((mCount - 1) <= mInputContent.length()) {
-                    mTextViews[5].setSelected(true);
+                    mTextViews[mCount - 1].setSelected(true);
                 } else if (mInputContent.isEmpty()) {
                     mTextViews[0].setSelected(true);
                 } else
@@ -138,8 +147,14 @@ public class VerifyCodeView extends RelativeLayout {
     }
 
     //动态限制输入的内容
-    void setDigitsKeyListener(DigitsKeyListener digitsKeyListener) {
-        mEtInput.setKeyListener(digitsKeyListener);
+    void setDigitsKeyListener(final String digits) {
+        mEtInput.setKeyListener(new DigitsKeyListener() {
+            @NonNull
+            @Override
+            protected char[] getAcceptedChars() {
+                return digits.toCharArray();
+            }
+        });
     }
 
     public String getEditContent() {
