@@ -44,6 +44,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.FoldTextViewActivity"
+            android:label="折叠textview"
             android:screenOrientation="portrait" />
     </application>
 
