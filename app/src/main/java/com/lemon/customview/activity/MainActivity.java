@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.lemon.customview.R;
+import com.lemon.customview.widget.FoldTextView;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -19,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.btn_depth, R.id.btn_time, R.id.btn_marquee, R.id.btn_slanted, R.id.btn_keyboard, R.id.btn_verify_code})
+    @OnClick({R.id.btn_depth, R.id.btn_time, R.id.btn_marquee, R.id.btn_slanted, R.id.btn_keyboard, R.id.btn_verify_code,
+                R.id.btn_fold_text_view})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_depth:
@@ -39,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btn_verify_code:
                 startActivity(new Intent(MainActivity.this, VerifyCodeViewActivity.class));
+                break;
+            case R.id.btn_fold_text_view:
+                startActivity(new Intent(MainActivity.this, FoldTextViewActivity.class));
                 break;
         }
     }

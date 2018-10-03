@@ -58,6 +58,14 @@
             android:background="@color/chart_text"
             android:text="验证码输入框" />
 
+        <Button
+            android:id="@+id/btn_fold_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/chart_text"
+            android:text="折叠textview" />
+
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>
