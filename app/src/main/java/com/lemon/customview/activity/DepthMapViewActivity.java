@@ -120,12 +120,9 @@ public class DepthMapViewActivity extends AppCompatActivity {
                 listDepthSell.add(obj);
                 listDepthSell1.add(obj1);
             }
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    mDepthView.setData(listDepthBuy, listDepthSell);
-                    mDepthView1.setData(listDepthBuy1, listDepthSell1);
-                }
+            runOnUiThread(() -> {
+                mDepthView.setData(listDepthBuy, listDepthSell);
+                mDepthView1.setData(listDepthBuy1, listDepthSell1);
             });
         } catch (JSONException e) {
             e.printStackTrace();

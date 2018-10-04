@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="5dp"
+        tools:ignore="HardcodedText">
+
+        <TextView
+            android:id="@+id/tv_tips00"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="4dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:text="ExpandTextView包含如下功能：\n1、实现类似微博@好友的功能，对@内容进行高亮显示，可以点击\n2、实现链接的高亮显示，可以点击，并且对链接进行原文隐藏\n3、实现内容超过指定行数折叠效果，点击可以展开内容\n4、在原文内容末尾添加指定内容，比如时间串，详情见效果图\n5、自定义高亮规则，实现自定义位置点击\n6、RecyclerView中可记住展开和收回状态\n7、可固定展开和收回按钮在最右边或紧贴内容后边\n"
+            android:textColor="#333333"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e6e6e6"
+            android:lineSpacingExtra="4dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:text="特别：在RecyclerView中的使用(ListView类似)"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:id="@+id/ll_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="20dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:lineSpacingExtra="4dp"
+                android:text="点击查看在RecyclerView中的使用效果"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@mipmap/right" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_tips01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e6e6e6"
+            android:lineSpacingExtra="4dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:text="1、正常带链接和@用户，没有展开和收回功能"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <com.lemon.customview.widget.ExpandableTextView.ExpandableTextView
+            android:id="@+id/ep_01"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:lineSpacingExtra="4dp"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_tips02"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e6e6e6"
+            android:lineSpacingExtra="4dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:text="2、正常带链接，不带@用户，有展开和收回功能，有切换动画"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <com.lemon.customview.widget.ExpandableTextView.ExpandableTextView
+            android:id="@+id/ep_02"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:lineSpacingExtra="4dp"
+            android:textSize="14sp"
+            app:ep_max_line="5"
+            app:ep_need_contract="true"
+            app:ep_need_expand="true"
+            app:ep_need_mention="false" />
+
+        <TextView
+            android:id="@+id/tv_tips03"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e6e6e6"
+            android:lineSpacingExtra="4dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:text="3、正常不带链接，不带@用户，有展开和收回功能，有切换动画"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <com.lemon.customview.widget.ExpandableTextView.ExpandableTextView
+            android:id="@+id/ep_03"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:lineSpacingExtra="4dp"
+            android:textSize="14sp"
+            app:ep_max_line="5"
+            app:ep_need_contract="true"
+            app:ep_need_expand="true"
+            app:ep_need_link="false"
+            app:ep_need_mention="false" />
+
+        <TextView
+            android:id="@+id/tv_tips04"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e6e6e6"
+            android:lineSpacingExtra="4dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:text="4、正常带链接和@用户，有展开和收回功能，有切换动画"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <com.lemon.customview.widget.ExpandableTextView.ExpandableTextView
+            android:id="@+id/ep_04"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:lineSpacingExtra="4dp"
+            android:textSize="14sp"
+            app:ep_max_line="5"
+            app:ep_need_contract="true"
+            app:ep_need_expand="true" />
+
+        <TextView
+            android:id="@+id/tv_tips05"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e6e6e6"
+            android:lineSpacingExtra="4dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:text="5、正常带链接和@用户，有展开和收回功能，没有切换动画"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <com.lemon.customview.widget.ExpandableTextView.ExpandableTextView
+            android:id="@+id/ep_05"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:lineSpacingExtra="4dp"
+            android:textSize="14sp"
+            app:ep_max_line="5"
+            app:ep_need_contract="true"
+            app:ep_need_expand="true" />
+
+        <TextView
+            android:id="@+id/tv_tips06"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e6e6e6"
+            android:lineSpacingExtra="4dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:text="6、正常带链接和@用户，有展开，没有收回功能"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <com.lemon.customview.widget.ExpandableTextView.ExpandableTextView
+            android:id="@+id/ep_06"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:lineSpacingExtra="5dp"
+            android:textSize="14sp"
+            app:ep_max_line="5"
+            app:ep_need_contract="false"
+            app:ep_need_expand="true" />
+
+        <TextView
+            android:id="@+id/tv_tips07"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e6e6e6"
+            android:lineSpacingExtra="4dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:text="7、正常带链接和@用户，有展开，有收回功能，带附加内容(比如时间)"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <com.lemon.customview.widget.ExpandableTextView.ExpandableTextView
+            android:id="@+id/ep_07"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:lineSpacingExtra="4dp"
+            android:textSize="14sp"
+            app:ep_max_line="5"
+            app:ep_need_contract="true"
+            app:ep_need_expand="true" />
+
+        <TextView
+            android:id="@+id/tv_tips08"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e6e6e6"
+            android:lineSpacingExtra="4dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:text="8、正常带链接和@用户，有展开，没有收回功能，带附加内容(比如时间)"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <com.lemon.customview.widget.ExpandableTextView.ExpandableTextView
+            android:id="@+id/ep_08"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:lineSpacingExtra="5dp"
+            android:textSize="14sp"
+            app:ep_max_line="5"
+            app:ep_need_contract="false"
+            app:ep_need_expand="true" />
+
+        <TextView
+            android:id="@+id/tv_tips09"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e6e6e6"
+            android:lineSpacingExtra="4dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:text="9、正常带链接和@用户，有展开，有收回功能，有'展开'和'收起'始终靠右显示的功能"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <com.lemon.customview.widget.ExpandableTextView.ExpandableTextView
+            android:id="@+id/ep_09"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:lineSpacingExtra="5dp"
+            android:textSize="14sp"
+            app:ep_max_line="5"
+            app:ep_need_contract="true"
+            app:ep_need_expand="true"
+            app:ep_need_self="true" />
+
+        <TextView
+            android:id="@+id/tv_tips10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e6e6e6"
+            android:lineSpacingExtra="4dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:text="10、正常带链接和@用户，有展开，有收回功能，带自定义规则（解析[标题](规则)并处理，例如对一些字段进行自定义处理，比如文字中的'--习大大' 和 'Gitbub地址'）"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <com.lemon.customview.widget.ExpandableTextView.ExpandableTextView
+            android:id="@+id/ep_10"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:lineSpacingExtra="5dp"
+            android:textSize="14sp"
+            app:ep_max_line="5"
+            app:ep_need_contract="true"
+            app:ep_need_expand="true"
+            app:ep_need_self="true" />
+
+    </LinearLayout>
+</ScrollView>

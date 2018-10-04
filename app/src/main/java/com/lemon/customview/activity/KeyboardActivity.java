@@ -26,22 +26,18 @@ public class KeyboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_keyboard);
         ButterKnife.bind(this);
 
-        mKv.setOnItemClickListener(new KeyboardView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(int position) {
-                if (position == 10) {
-                    String content = mTvInput.getText().toString();
-                    if (!TextUtils.isEmpty(content)) {
-                        mTvInput.setText(content.substring(0, content.length() - 1));
-                    }
-                } else if (position == 11) {
-                    mTvInput.append("0");
-                } else if (position == 12) {
-                    Toast.makeText(KeyboardActivity.this, "完成", Toast.LENGTH_SHORT).show();
-                } else {
-                    mTvInput.append(position + "");
+        mKv.setOnItemClickListener(position -> {
+            if (position == 10) {
+                String content = mTvInput.getText().toString();
+                if (!TextUtils.isEmpty(content)) {
+                    mTvInput.setText(content.substring(0, content.length() - 1));
                 }
+            } else if (position == 11) {
+                mTvInput.append("0");
+            } else if (position == 12) {
+                Toast.makeText(KeyboardActivity.this, "完成", Toast.LENGTH_SHORT).show();
+            } else {
+                mTvInput.append(position + "");
             }
         });
     }

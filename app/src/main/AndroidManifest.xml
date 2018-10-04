@@ -46,6 +46,14 @@
             android:name=".activity.FoldTextViewActivity"
             android:label="折叠textview"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ExpandableTextViewActivity"
+            android:label="加强版折叠TextView"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ShowInRecyclerViewActivity"
+            android:label="加强版折叠TextView"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
