@@ -119,12 +119,6 @@
         <attr name="verifyCodeTextSize" format="dimension" />
     </declare-styleable>
 
-    showTipAfterExpand 点击展开后是否显示收起全文提示
-    tipClickable 提示是否可以点击
-    tipColor 提示文字颜色
-    tipGravity 提示文字位置 0-最后一行末尾，1-另起一行
-    foldText 折叠时的提示文字
-    expandText 展开时的提示文字
 
     <declare-styleable name="FoldTextView">
         <!--展示最大行数-->
@@ -147,7 +141,7 @@
         <attr name="isSetParentClick" format="boolean" />
     </declare-styleable>
 
-
+    <!--加强版折叠TextView-->
     <declare-styleable name="ExpandableTextView">
         <!--保留的行数-->
         <attr name="ep_max_line" format="integer" />
@@ -183,6 +177,19 @@
         <attr name="ep_self_color" format="color" />
         <!--链接的图标-->
         <attr name="ep_link_res" format="reference" />
+    </declare-styleable>
+
+
+    <!--圆角imageview-->
+    <declare-styleable name="RoundImageView">
+        <attr name="borderRadius" format="dimension" />
+        <attr name="type">
+            <enum name="normal" value="-1" />
+            <enum name="circle" value="0" />
+            <enum name="round" value="1" />
+        </attr>
+        <attr name="borderWidth" format="dimension" />
+        <attr name="borderColor" format="integer" />
     </declare-styleable>
 
 </resources>
