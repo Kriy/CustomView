@@ -182,14 +182,14 @@
 
     <!--圆角imageview-->
     <declare-styleable name="RoundImageView">
-        <attr name="borderRadius" format="dimension" />
-        <attr name="type">
+        <attr name="riv_borderRadius" format="dimension" />
+        <attr name="riv_type">
             <enum name="normal" value="-1" />
             <enum name="circle" value="0" />
             <enum name="round" value="1" />
         </attr>
-        <attr name="borderWidth" format="dimension" />
-        <attr name="borderColor" format="integer" />
+        <attr name="riv_borderWidth" format="dimension" />
+        <attr name="riv_borderColor" format="integer" />
     </declare-styleable>
 
 </resources>

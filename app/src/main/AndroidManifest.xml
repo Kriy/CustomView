@@ -54,6 +54,10 @@
             android:name=".activity.ShowInRecyclerViewActivity"
             android:label="加强版折叠TextView"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.RoundImageViewActivity"
+            android:label="圆角ImageView"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

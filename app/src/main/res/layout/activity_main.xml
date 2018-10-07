@@ -75,6 +75,14 @@
             android:background="@color/chart_text"
             android:text="加强版折叠TextView" />
 
+        <Button
+            android:id="@+id/btn_round_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/chart_text"
+            android:text="圆角ImageView" />
+
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

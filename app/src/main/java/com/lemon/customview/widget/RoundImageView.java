@@ -15,7 +15,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.TintContextWrapper;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 
@@ -68,10 +67,10 @@ public class RoundImageView extends AppCompatImageView {
         boder_paint = new Paint();
         TypedArray array = context.obtainStyledAttributes(attrs,
                 R.styleable.RoundImageView);
-        borderRadius = dp2px(array.getDimension(R.styleable.RoundImageView_borderRadius, BODER_RADIUS_DEFAULT));
-        type = array.getInt(R.styleable.RoundImageView_type, TYPE_NORMAL);
-        border_width = dp2px(array.getDimension(R.styleable.RoundImageView_borderWidth, BORDER_WIDTH));
-        border_color = array.getInt(R.styleable.RoundImageView_borderColor, BORDER_COLOR);
+        borderRadius = dp2px(array.getDimension(R.styleable.RoundImageView_riv_borderRadius, BODER_RADIUS_DEFAULT));
+        type = array.getInt(R.styleable.RoundImageView_riv_type, TYPE_NORMAL);
+        border_width = dp2px(array.getDimension(R.styleable.RoundImageView_riv_borderWidth, BORDER_WIDTH));
+        border_color = array.getInt(R.styleable.RoundImageView_riv_borderColor, BORDER_COLOR);
         array.recycle();
     }
 
