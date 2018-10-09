@@ -58,6 +58,7 @@
             android:name=".activity.RoundImageViewActivity"
             android:label="圆角ImageView"
             android:screenOrientation="portrait" />
+        <activity android:name=".activity.ShapeImageViewActivity" />
     </application>
 
 </manifest>
