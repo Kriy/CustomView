@@ -58,7 +58,14 @@
             android:name=".activity.RoundImageViewActivity"
             android:label="圆角ImageView"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.ShapeImageViewActivity" />
+        <activity
+            android:name=".activity.ShapeImageViewActivity"
+            android:label="改版圆角ImageView"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Roll3DViewActivity"
+            android:label="3D View"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
