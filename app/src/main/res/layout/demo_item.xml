@@ -13,7 +13,7 @@
         android:textColor="@android:color/black"
         android:textSize="15sp" />
 
-    <com.chenzy.widget.Roll3DView
+    <com.lemon.customview.widget.Roll3DView
         android:id="@+id/three_d_view"
         android:layout_width="150dp"
         android:layout_height="120dp"

@@ -18,11 +18,11 @@ public class Roll3DLinearLayout extends LinearLayout implements View.OnClickList
     private TextView titleTv;
 
     public Roll3DLinearLayout(Context context) {
-        super(context, null);
+        this(context, null);
     }
 
     public Roll3DLinearLayout(Context context, AttributeSet attrs) {
-        super(context, attrs, 0);
+        this(context, attrs, 0);
     }
 
     public Roll3DLinearLayout(Context context, AttributeSet attrs, int defStyleAttr) {
