@@ -258,5 +258,12 @@
         <attr name="sel_background_ripple_mask_corner_bottomRight" format="dimension"/>
     </declare-styleable>
 
-
+    <declare-styleable name="MeiHeartView">
+        <!--爱心动画时长-->
+        <attr name="heartDuration" format="integer" />
+        <!--是否显示透明度动画-->
+        <attr name="heartEnableAlpha" format="boolean" />
+        <!--是否显示缩放动画-->
+        <attr name="heartEnableScale" format="boolean" />
+    </declare-styleable>
 </resources>
