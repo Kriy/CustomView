@@ -266,4 +266,22 @@
         <!--是否显示缩放动画-->
         <attr name="heartEnableScale" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="TextPathView">
+        <attr name="text" format="string" />
+        <attr name="textSize" format="dimension" />
+        <attr name="textColor" format="color" />
+        <attr name="duration" format="integer" />
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="cycle" format="boolean" />
+        <attr name="autoStart" format="boolean" />
+    </declare-styleable>
+
+    <!-- 风扇线条颜色 -->
+    <declare-styleable name="FanView">
+        <attr name="lineColor" format="color" />
+        <attr name="fanRadiusRatio" format="float" />
+        <attr name="fanSweepAngle" format="integer" />
+        <attr name="fanDuration" format="integer" />
+    </declare-styleable>
 </resources>
