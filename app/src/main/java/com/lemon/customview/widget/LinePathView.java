@@ -20,7 +20,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.Arrays;
 import java.util.concurrent.Semaphore;
 
-public class MeiLinePathView extends View {
+public class LinePathView extends View {
 
     /**
      * 火车模式 TRAIN_MODE
@@ -63,15 +63,15 @@ public class MeiLinePathView extends View {
 
     private Keyframes mKeyframes;
 
-    public MeiLinePathView(Context context) {
+    public LinePathView(Context context) {
         this(context, null);
     }
 
-    public MeiLinePathView(Context context, AttributeSet attrs) {
+    public LinePathView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public MeiLinePathView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LinePathView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
