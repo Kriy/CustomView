@@ -19,11 +19,14 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.btn_depth, R.id.btn_time, R.id.btn_marquee, R.id.btn_slanted, R.id.btn_keyboard, R.id.btn_verify_code,
-            R.id.btn_fold_text_view, R.id.btn_expand_text_view, R.id.btn_round_image_view, R.id.btn_shape_image_view,
-            R.id.btn_roll_3d_view, R.id.btn_heart_view, R.id.btn_path_view, R.id.btn_line_path_view})
+    @OnClick({R.id.btn_view, R.id.btn_depth, R.id.btn_time, R.id.btn_marquee, R.id.btn_slanted, R.id.btn_keyboard,
+            R.id.btn_verify_code, R.id.btn_fold_text_view, R.id.btn_expand_text_view, R.id.btn_round_image_view,
+            R.id.btn_shape_image_view, R.id.btn_roll_3d_view, R.id.btn_heart_view, R.id.btn_path_view, R.id.btn_line_path_view})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.btn_view:
+                // TODO: 2018/10/30  
+                break;
             case R.id.btn_depth:
                 startActivity(new Intent(MainActivity.this, DepthMapViewActivity.class));
                 break;

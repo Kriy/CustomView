@@ -125,12 +125,7 @@ public class LinePathView extends View {
 
         // 时长是总时长的10%
         mAlphaAnimator = ValueAnimator.ofInt(0, 255).setDuration(mAnimationDuration / 10);
-        mAlphaAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                mAlpha = (int) animation.getAnimatedValue();
-            }
-        });
+        mAlphaAnimator.addUpdateListener(animation -> mAlpha = (int) animation.getAnimatedValue());
         mAlphaAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
@@ -167,68 +162,60 @@ public class LinePathView extends View {
         mAlphaAnimator = null;
         //底部灰色线条向后加长到原Path的60%
         mProgressAnimator = ValueAnimator.ofFloat(-0.6F, 1).setDuration(mAnimationDuration);
-        mProgressAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
+        mProgressAnimator.addUpdateListener(animation -> {
 
-                float currentProgress = (float) animation.getAnimatedValue();
-                //粉色线头
-                float lightLineStartProgress;
-                //粉色线尾
-                float lightLineEndProgress;
-                //灰色线头
-                float darkLineStartProgress;
-                //灰色线尾
-                float darkLineEndProgress;
+            float currentProgress = (float) animation.getAnimatedValue();
+            //粉色线头
+            float lightLineStartProgress;
+            //粉色线尾
+            float lightLineEndProgress;
+            //灰色线头
+            float darkLineStartProgress;
+            //灰色线尾
+            float darkLineEndProgress;
 
-                darkLineEndProgress = currentProgress;
+            darkLineEndProgress = currentProgress;
 
-                //粉色线头从0开始，并且初始速度是灰色线尾的两倍
-                darkLineStartProgress = lightLineStartProgress = (0.6F + currentProgress) * 2;
+            //粉色线头从0开始，并且初始速度是灰色线尾的两倍
+            darkLineStartProgress = lightLineStartProgress = (0.6F + currentProgress) * 2;
 
-                //粉色线尾从-0.25开始，速度跟灰色线尾速度一样
-                lightLineEndProgress = 0.35F + currentProgress;
+            //粉色线尾从-0.25开始，速度跟灰色线尾速度一样
+            lightLineEndProgress = 0.35F + currentProgress;
 
-                //粉色线尾走到30%时，速度变为原来速度的2倍
-                if (lightLineEndProgress > 0.3F) {
-                    lightLineEndProgress = (0.35F + currentProgress - 0.3F) * 2 + 0.3F;
-                }
-
-                //当粉色线头走到65%时，速度变为原来速度的0.35倍
-                if (darkLineStartProgress > 0.65F) {
-                    darkLineStartProgress = lightLineStartProgress = ((0.6F + currentProgress) * 2 - 0.65F) * 0.35F + 0.65F;
-                }
-                if (lightLineEndProgress < 0) {
-                    lightLineEndProgress = 0;
-                }
-                if (darkLineEndProgress < 0) {
-                    darkLineEndProgress = 0;
-                }
-
-                //当粉色线尾走到90%时，播放透明渐变动画
-                if (lightLineEndProgress > 0.9F) {
-                    if (mAlphaAnimator == null) {
-                        mAlphaAnimator = ValueAnimator.ofInt(255, 0).setDuration((long) (mAnimationDuration * .2));//
-                        // 时长是总时长的20%
-                        mAlphaAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                            @Override
-                            public void onAnimationUpdate(ValueAnimator animation) {
-                                mAlpha = (int) animation.getAnimatedValue();
-                            }
-                        });
-                        mAlphaAnimator.start();
-                    }
-                }
-                if (lightLineStartProgress > 1) {
-                    darkLineStartProgress = lightLineStartProgress = 1;
-                }
-
-                setLightLineProgress(lightLineStartProgress, lightLineEndProgress);
-
-                //飞机模式才更新灰色线条
-                if (mMode == AIRPLANE_MODE)
-                    setDarkLineProgress(darkLineStartProgress, darkLineEndProgress);
+            //粉色线尾走到30%时，速度变为原来速度的2倍
+            if (lightLineEndProgress > 0.3F) {
+                lightLineEndProgress = (0.35F + currentProgress - 0.3F) * 2 + 0.3F;
             }
+
+            //当粉色线头走到65%时，速度变为原来速度的0.35倍
+            if (darkLineStartProgress > 0.65F) {
+                darkLineStartProgress = lightLineStartProgress = ((0.6F + currentProgress) * 2 - 0.65F) * 0.35F + 0.65F;
+            }
+            if (lightLineEndProgress < 0) {
+                lightLineEndProgress = 0;
+            }
+            if (darkLineEndProgress < 0) {
+                darkLineEndProgress = 0;
+            }
+
+            //当粉色线尾走到90%时，播放透明渐变动画
+            if (lightLineEndProgress > 0.9F) {
+                if (mAlphaAnimator == null) {
+                    mAlphaAnimator = ValueAnimator.ofInt(255, 0).setDuration((long) (mAnimationDuration * .2));//
+                    // 时长是总时长的20%
+                    mAlphaAnimator.addUpdateListener(animation1 -> mAlpha = (int) animation1.getAnimatedValue());
+                    mAlphaAnimator.start();
+                }
+            }
+            if (lightLineStartProgress > 1) {
+                darkLineStartProgress = lightLineStartProgress = 1;
+            }
+
+            setLightLineProgress(lightLineStartProgress, lightLineEndProgress);
+
+            //飞机模式才更新灰色线条
+            if (mMode == AIRPLANE_MODE)
+                setDarkLineProgress(darkLineStartProgress, darkLineEndProgress);
         });
         mProgressAnimator.addListener(new AnimatorListenerAdapter() {
             @Override

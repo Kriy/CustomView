@@ -12,6 +12,13 @@
         tools:ignore="HardcodedText">
 
         <Button
+            android:id="@+id/btn_view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/chart_text"
+            android:text="自定义控件理论知识" />
+
+        <Button
             android:id="@+id/btn_depth"
             android:layout_width="match_parent"
             android:layout_height="40dp"
