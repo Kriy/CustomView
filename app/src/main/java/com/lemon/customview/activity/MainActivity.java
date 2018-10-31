@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_view:
-                // TODO: 2018/10/30  
+                startActivity(new Intent(MainActivity.this, TheoryActivity.class));
                 break;
             case R.id.btn_depth:
                 startActivity(new Intent(MainActivity.this, DepthMapViewActivity.class));

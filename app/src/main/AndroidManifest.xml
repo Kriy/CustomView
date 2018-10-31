@@ -19,7 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".activity.TheoryActivity"
+            android:label="理论知识"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.DepthMapViewActivity"
             android:label="深度图"
@@ -79,6 +82,9 @@
         <activity
             android:name=".activity.LinePathActivity"
             android:label="线条路径"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.WebViewActivity"
             android:screenOrientation="portrait" />
     </application>
 
