@@ -20,71 +20,74 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.TheoryActivity"
+            android:name=".activity.view.TheoryActivity"
             android:label="理论知识"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.DepthMapViewActivity"
+            android:name=".activity.view.DepthMapViewActivity"
             android:label="深度图"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.TimeLineMarkerViewActivity"
+            android:name=".activity.view.TimeLineMarkerViewActivity"
             android:label="时间线"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.MarqueeViewActivity"
+            android:name=".activity.view.MarqueeViewActivity"
             android:label="跑马灯"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.SlantedTextViewActivity"
+            android:name=".activity.view.SlantedTextViewActivity"
             android:label="倾斜textview"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.KeyboardActivity"
+            android:name=".activity.view.KeyboardActivity"
             android:label="自定义数字键盘"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.VerifyCodeViewActivity"
+            android:name=".activity.view.VerifyCodeViewActivity"
             android:label="验证码输入框"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.FoldTextViewActivity"
+            android:name=".activity.view.FoldTextViewActivity"
             android:label="折叠textview"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ExpandableTextViewActivity"
+            android:name=".activity.view.ExpandableTextViewActivity"
             android:label="加强版折叠TextView"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ShowInRecyclerViewActivity"
+            android:name=".activity.view.ShowInRecyclerViewActivity"
             android:label="加强版折叠TextView"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.RoundImageViewActivity"
+            android:name=".activity.view.RoundImageViewActivity"
             android:label="圆角ImageView"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ShapeImageViewActivity"
+            android:name=".activity.view.ShapeImageViewActivity"
             android:label="改版圆角ImageView"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.Roll3DViewActivity"
+            android:name=".activity.view.Roll3DViewActivity"
             android:label="3D View"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.MeiHeartViewActivity"
+            android:name=".activity.view.MeiHeartViewActivity"
             android:label="直播间送爱心"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.TextPathViewActivity"
+            android:name=".activity.view.TextPathViewActivity"
             android:label="路径"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.LinePathActivity"
+            android:name=".activity.view.LinePathActivity"
             android:label="线条路径"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.WebViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.material.TextInputLayoutActivity"
             android:screenOrientation="portrait" />
     </application>
 

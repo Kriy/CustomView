@@ -1,4 +1,4 @@
-package com.lemon.customview.activity;
+package com.lemon.customview.activity.view;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

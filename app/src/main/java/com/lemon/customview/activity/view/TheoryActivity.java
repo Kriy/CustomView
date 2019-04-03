@@ -1,4 +1,4 @@
-package com.lemon.customview.activity;
+package com.lemon.customview.activity.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.lemon.customview.R;
+import com.lemon.customview.activity.WebViewActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;

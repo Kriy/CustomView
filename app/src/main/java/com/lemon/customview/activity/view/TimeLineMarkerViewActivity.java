@@ -1,4 +1,4 @@
-package com.lemon.customview.activity;
+package com.lemon.customview.activity.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
