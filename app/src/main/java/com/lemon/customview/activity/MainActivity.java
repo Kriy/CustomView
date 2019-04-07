@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.lemon.customview.R;
-import com.lemon.customview.activity.material.TextInputLayoutActivity;
+import com.lemon.customview.activity.material.MaterialActivity;
 import com.lemon.customview.activity.view.DepthMapViewActivity;
 import com.lemon.customview.activity.view.ExpandableTextViewActivity;
 import com.lemon.customview.activity.view.FoldTextViewActivity;
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_material_design:
-                startActivity(new Intent(MainActivity.this, TextInputLayoutActivity.class));
+                startActivity(new Intent(MainActivity.this, MaterialActivity.class));
                 break;
             case R.id.btn_view:
                 startActivity(new Intent(MainActivity.this, TheoryActivity.class));

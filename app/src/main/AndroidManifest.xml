@@ -89,6 +89,9 @@
         <activity
             android:name=".activity.material.TextInputLayoutActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.material.MaterialActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
