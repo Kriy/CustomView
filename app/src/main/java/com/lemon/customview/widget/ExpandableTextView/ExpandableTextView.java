@@ -9,9 +9,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatTextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
 import android.text.DynamicLayout;
 import android.text.Layout;
 import android.text.Selection;
@@ -37,7 +37,7 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static android.support.v4.util.PatternsCompat.AUTOLINK_WEB_URL;
+import static androidx.core.util.PatternsCompat.AUTOLINK_WEB_URL;
 
 public class ExpandableTextView extends AppCompatTextView {
 

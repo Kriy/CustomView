@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="60dp">
+
+    <Button
+        android:id="@+id/btn_round_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/chart_text"
+        android:text="圆角ImageView" />
+
+    <Button
+        android:id="@+id/btn_shape_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/chart_text"
+        android:text="改版圆角ImageView" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

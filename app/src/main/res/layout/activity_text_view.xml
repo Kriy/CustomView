@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="60dp">
+
+    <Button
+        android:id="@+id/btn_slanted"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/chart_text"
+        android:text="倾斜textview" />
+
+    <Button
+        android:id="@+id/btn_fold_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/chart_text"
+        android:text="折叠textview" />
+
+    <Button
+        android:id="@+id/btn_expand_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/chart_text"
+        android:text="加强版折叠TextView" />
+
+    <Button
+        android:id="@+id/btn_number_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/chart_text"
+        android:text="数字变化TextView" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

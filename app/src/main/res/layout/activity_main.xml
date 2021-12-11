@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:paddingHorizontal="60dp"
         tools:ignore="HardcodedText">
 
         <Button
@@ -36,6 +37,22 @@
             android:text="深度图" />
 
         <Button
+            android:id="@+id/btn_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/chart_text"
+            android:text="TextView相关" />
+
+        <Button
+            android:id="@+id/btn_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/chart_text"
+            android:text="ImageView相关" />
+
+        <Button
             android:id="@+id/btn_time"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -52,14 +69,6 @@
             android:text="跑马灯" />
 
         <Button
-            android:id="@+id/btn_slanted"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/chart_text"
-            android:text="倾斜textview" />
-
-        <Button
             android:id="@+id/btn_keyboard"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -74,38 +83,6 @@
             android:layout_marginTop="10dp"
             android:background="@color/chart_text"
             android:text="验证码输入框" />
-
-        <Button
-            android:id="@+id/btn_fold_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/chart_text"
-            android:text="折叠textview" />
-
-        <Button
-            android:id="@+id/btn_expand_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/chart_text"
-            android:text="加强版折叠TextView" />
-
-        <Button
-            android:id="@+id/btn_round_image_view"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/chart_text"
-            android:text="圆角ImageView" />
-
-        <Button
-            android:id="@+id/btn_shape_image_view"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/chart_text"
-            android:text="改版圆角ImageView" />
 
         <Button
             android:id="@+id/btn_roll_3d_view"
@@ -141,4 +118,4 @@
 
     </LinearLayout>
 
-</android.support.v4.widget.NestedScrollView>
+</androidx.core.widget.NestedScrollView>

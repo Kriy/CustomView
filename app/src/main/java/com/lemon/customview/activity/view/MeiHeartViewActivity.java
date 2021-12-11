@@ -3,8 +3,10 @@ package com.lemon.customview.activity.view;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.SparseArray;
 import android.view.View;
 
@@ -12,23 +14,15 @@ import com.lemon.customview.R;
 import com.lemon.customview.widget.Heart.HeartType;
 import com.lemon.customview.widget.Heart.MeiHeartView;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-
 public class MeiHeartViewActivity extends AppCompatActivity {
-
-
-    @BindView(R.id.heart_view)
-    MeiHeartView mHeartView;
+    private MeiHeartView mHeartView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mei_heart_view);
-        ButterKnife.bind(this);
 
-
+        mHeartView = findViewById(R.id.heart_view);
         setHeartBitmap();
 
         mHeartView.setOnClickListener(new View.OnClickListener() {

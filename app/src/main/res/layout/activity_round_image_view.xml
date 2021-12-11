@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.lemon.customview.widget.RoundImageView
+        <com.lemon.customview.widget.imageview.RoundImageView
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
@@ -20,7 +20,7 @@
             app:riv_borderWidth="3dp"
             app:riv_type="circle" />
 
-        <com.lemon.customview.widget.RoundImageView
+        <com.lemon.customview.widget.imageview.RoundImageView
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -31,7 +31,7 @@
             app:riv_borderWidth="1dp"
             app:riv_type="round" />
 
-        <com.lemon.customview.widget.RoundImageView
+        <com.lemon.customview.widget.imageview.RoundImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -39,7 +39,7 @@
             android:src="@mipmap/test"
             app:riv_type="circle" />
 
-        <com.lemon.customview.widget.RoundImageView
+        <com.lemon.customview.widget.imageview.RoundImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -48,7 +48,7 @@
             android:src="@mipmap/test"
             app:riv_type="circle" />
 
-        <com.lemon.customview.widget.RoundImageView
+        <com.lemon.customview.widget.imageview.RoundImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

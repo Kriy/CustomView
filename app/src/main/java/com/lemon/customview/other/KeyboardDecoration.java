@@ -1,7 +1,7 @@
 package com.lemon.customview.other;
 
 import android.graphics.Rect;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 public class KeyboardDecoration extends RecyclerView.ItemDecoration {

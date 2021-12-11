@@ -9,7 +9,11 @@
 
 3.跑马灯，常用文案轮播场景
 
-4.倾斜TextView，可用于图片标签场景等
+4.TextView相关
+    4.1 倾斜TextView，可用于图片标签场景等
+    4.2 折叠TextView
+    4.3 加强版折叠TextView
+    4.4 数字变化TextView
 
 5.自定义数字键盘
 

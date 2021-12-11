@@ -1,94 +1,123 @@
-package com.lemon.customview.activity;
+package com.lemon.customview.activity
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.lemon.customview.R
+import android.content.Intent
+import android.view.View
+import com.lemon.customview.activity.material.MaterialActivity
+import com.lemon.customview.activity.view.TheoryActivity
+import com.lemon.customview.activity.view.DepthMapViewActivity
+import com.lemon.customview.activity.view.TimeLineMarkerViewActivity
+import com.lemon.customview.activity.view.MarqueeViewActivity
+import com.lemon.customview.activity.view.textview.SlantedTextViewActivity
+import com.lemon.customview.activity.view.KeyboardActivity
+import com.lemon.customview.activity.view.VerifyCodeViewActivity
+import com.lemon.customview.activity.view.textview.FoldTextViewActivity
+import com.lemon.customview.activity.view.ExpandableTextViewActivity
+import com.lemon.customview.activity.view.RoundImageViewActivity
+import com.lemon.customview.activity.view.ShapeImageViewActivity
+import com.lemon.customview.activity.view.Roll3DViewActivity
+import com.lemon.customview.activity.view.MeiHeartViewActivity
+import com.lemon.customview.activity.view.TextPathViewActivity
+import com.lemon.customview.activity.view.LinePathActivity
+import com.lemon.customview.activity.view.imageview.ImageViewActivity
+import com.lemon.customview.activity.view.textview.TextViewActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
-import com.lemon.customview.R;
-import com.lemon.customview.activity.material.MaterialActivity;
-import com.lemon.customview.activity.view.DepthMapViewActivity;
-import com.lemon.customview.activity.view.ExpandableTextViewActivity;
-import com.lemon.customview.activity.view.FoldTextViewActivity;
-import com.lemon.customview.activity.view.KeyboardActivity;
-import com.lemon.customview.activity.view.LinePathActivity;
-import com.lemon.customview.activity.view.MarqueeViewActivity;
-import com.lemon.customview.activity.view.MeiHeartViewActivity;
-import com.lemon.customview.activity.view.Roll3DViewActivity;
-import com.lemon.customview.activity.view.RoundImageViewActivity;
-import com.lemon.customview.activity.view.ShapeImageViewActivity;
-import com.lemon.customview.activity.view.SlantedTextViewActivity;
-import com.lemon.customview.activity.view.TextPathViewActivity;
-import com.lemon.customview.activity.view.TheoryActivity;
-import com.lemon.customview.activity.view.TimeLineMarkerViewActivity;
-import com.lemon.customview.activity.view.VerifyCodeViewActivity;
-
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-public class MainActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+class MainActivity : AppCompatActivity(), View.OnClickListener {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        btn_material_design.setOnClickListener(this)
+        btn_view.setOnClickListener(this)
+        btn_depth.setOnClickListener(this)
+        btn_time.setOnClickListener(this)
+        btn_marquee.setOnClickListener(this)
+        btn_text_view.setOnClickListener(this)
+        btn_image_view.setOnClickListener(this)
+        btn_keyboard.setOnClickListener(this)
+        btn_verify_code.setOnClickListener(this)
+        btn_roll_3d_view.setOnClickListener(this)
+        btn_heart_view.setOnClickListener(this)
+        btn_path_view.setOnClickListener(this)
+        btn_line_path_view.setOnClickListener(this)
     }
 
-    @OnClick({R.id.btn_material_design, R.id.btn_view, R.id.btn_depth, R.id.btn_time, R.id.btn_marquee, R.id.btn_slanted, R.id.btn_keyboard,
-            R.id.btn_verify_code, R.id.btn_fold_text_view, R.id.btn_expand_text_view, R.id.btn_round_image_view,
-            R.id.btn_shape_image_view, R.id.btn_roll_3d_view, R.id.btn_heart_view, R.id.btn_path_view, R.id.btn_line_path_view})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.btn_material_design:
-                startActivity(new Intent(MainActivity.this, MaterialActivity.class));
-                break;
-            case R.id.btn_view:
-                startActivity(new Intent(MainActivity.this, TheoryActivity.class));
-                break;
-            case R.id.btn_depth:
-                startActivity(new Intent(MainActivity.this, DepthMapViewActivity.class));
-                break;
-            case R.id.btn_time:
-                startActivity(new Intent(MainActivity.this, TimeLineMarkerViewActivity.class));
-                break;
-            case R.id.btn_marquee:
-                startActivity(new Intent(MainActivity.this, MarqueeViewActivity.class));
-                break;
-            case R.id.btn_slanted:
-                startActivity(new Intent(MainActivity.this, SlantedTextViewActivity.class));
-                break;
-            case R.id.btn_keyboard:
-                startActivity(new Intent(MainActivity.this, KeyboardActivity.class));
-                break;
-            case R.id.btn_verify_code:
-                startActivity(new Intent(MainActivity.this, VerifyCodeViewActivity.class));
-                break;
-            case R.id.btn_fold_text_view:
-                startActivity(new Intent(MainActivity.this, FoldTextViewActivity.class));
-                break;
-            case R.id.btn_expand_text_view:
-                startActivity(new Intent(MainActivity.this, ExpandableTextViewActivity.class));
-                break;
-            case R.id.btn_round_image_view:
-                startActivity(new Intent(MainActivity.this, RoundImageViewActivity.class));
-                break;
-            case R.id.btn_shape_image_view:
-                startActivity(new Intent(MainActivity.this, ShapeImageViewActivity.class));
-                break;
-            case R.id.btn_roll_3d_view:
-                startActivity(new Intent(MainActivity.this, Roll3DViewActivity.class));
-                break;
-            case R.id.btn_heart_view:
-                startActivity(new Intent(MainActivity.this, MeiHeartViewActivity.class));
-                break;
-            case R.id.btn_path_view:
-                startActivity(new Intent(MainActivity.this, TextPathViewActivity.class));
-                break;
-            case R.id.btn_line_path_view:
-                startActivity(new Intent(MainActivity.this, LinePathActivity.class));
-                break;
-            default:
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.btn_material_design -> startActivity(
+                Intent(
+                    this@MainActivity,
+                    MaterialActivity::class.java
+                )
+            )
+            R.id.btn_view -> startActivity(Intent(this@MainActivity, TheoryActivity::class.java))
+            R.id.btn_depth -> startActivity(
+                Intent(
+                    this@MainActivity,
+                    DepthMapViewActivity::class.java
+                )
+            )
+            R.id.btn_text_view -> startActivity(
+                Intent(
+                    this@MainActivity,
+                    TextViewActivity::class.java
+                )
+            )
+            R.id.btn_image_view -> startActivity(
+                Intent(this@MainActivity, ImageViewActivity::class.java)
+            )
+            R.id.btn_keyboard -> startActivity(
+                Intent(
+                    this@MainActivity,
+                    KeyboardActivity::class.java
+                )
+            )
+            R.id.btn_marquee -> startActivity(
+                Intent(
+                    this@MainActivity,
+                    MarqueeViewActivity::class.java
+                )
+            )
+            R.id.btn_time -> startActivity(
+                Intent(
+                    this@MainActivity,
+                    TimeLineMarkerViewActivity::class.java
+                )
+            )
+            R.id.btn_verify_code -> startActivity(
+                Intent(
+                    this@MainActivity,
+                    VerifyCodeViewActivity::class.java
+                )
+            )
+            R.id.btn_roll_3d_view -> startActivity(
+                Intent(
+                    this@MainActivity,
+                    Roll3DViewActivity::class.java
+                )
+            )
+            R.id.btn_heart_view -> startActivity(
+                Intent(
+                    this@MainActivity,
+                    MeiHeartViewActivity::class.java
+                )
+            )
+            R.id.btn_path_view -> startActivity(
+                Intent(
+                    this@MainActivity,
+                    TextPathViewActivity::class.java
+                )
+            )
+            R.id.btn_line_path_view -> startActivity(
+                Intent(
+                    this@MainActivity,
+                    LinePathActivity::class.java
+                )
+            )
+            else -> {
+            }
         }
     }
 }

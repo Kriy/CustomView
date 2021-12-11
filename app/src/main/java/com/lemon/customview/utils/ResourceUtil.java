@@ -1,9 +1,9 @@
 package com.lemon.customview.utils;
 
 import android.content.Context;
-import android.support.annotation.ColorRes;
-import android.support.annotation.DimenRes;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.ColorRes;
+import androidx.annotation.DimenRes;
+import androidx.core.content.ContextCompat;
 
 /**
  * Created by DF on 2017/9/6.

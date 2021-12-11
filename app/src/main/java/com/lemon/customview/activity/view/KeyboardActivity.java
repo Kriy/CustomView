@@ -1,8 +1,8 @@
 package com.lemon.customview.activity.view;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,21 +10,19 @@ import android.widget.Toast;
 import com.lemon.customview.R;
 import com.lemon.customview.widget.KeyboardView;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class KeyboardActivity extends AppCompatActivity {
 
-    @BindView(R.id.tv_input)
     TextView mTvInput;
-    @BindView(R.id.kv)
     KeyboardView mKv;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keyboard);
-        ButterKnife.bind(this);
+
+        mTvInput = findViewById(R.id.tv_input);
+        mKv = findViewById(R.id.kv);
 
         mKv.setOnItemClickListener(position -> {
             if (position == 10) {

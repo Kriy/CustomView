@@ -1,8 +1,8 @@
-package com.lemon.customview.activity.view;
+package com.lemon.customview.activity.view.textview;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.lemon.customview.R;
 

@@ -1,10 +1,10 @@
-package com.lemon.customview.widget;
+package com.lemon.customview.widget.textview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Paint;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatTextView;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;

@@ -2,8 +2,9 @@ package com.lemon.customview.activity.view;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.lemon.customview.DepthMapView;
 import com.lemon.customview.R;
@@ -18,23 +19,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class DepthMapViewActivity extends AppCompatActivity {
 
-    @BindView(R.id.depth_view)
-    DepthMapView mDepthView;
-    @BindView(R.id.depth_view1)
-    DepthMapView mDepthView1;
-
+    private DepthMapView mDepthView;
+    private DepthMapView mDepthView1;
     private String jsonData;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_depthmap_view);
-        ButterKnife.bind(this);
+
+        mDepthView = findViewById(R.id.depth_view);
+        mDepthView1 = findViewById(R.id.depth_view1);
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             android:background="#9c9c9c"
             android:padding="20dp">
 
-            <com.lemon.customview.widget.SpannableFoldTextView
+            <com.lemon.customview.widget.textview.SpannableFoldTextView
                 android:id="@+id/text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
             android:background="#9c9c9c"
             android:padding="20dp">
 
-            <com.lemon.customview.widget.SpannableFoldTextView
+            <com.lemon.customview.widget.textview.SpannableFoldTextView
                 android:id="@+id/text1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
             android:background="#9c9c9c"
             android:padding="20dp">
 
-            <com.lemon.customview.widget.FoldTextView
+            <com.lemon.customview.widget.textview.FoldTextView
                 android:id="@+id/text2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -102,7 +102,7 @@
             android:background="#9c9c9c"
             android:padding="20dp">
 
-            <com.lemon.customview.widget.FoldTextView
+            <com.lemon.customview.widget.textview.FoldTextView
                 android:id="@+id/text3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -115,4 +115,4 @@
                 app:tipGravity="first" />
         </FrameLayout>
     </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+</androidx.core.widget.NestedScrollView>

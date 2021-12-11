@@ -36,9 +36,12 @@
             android:label="跑马灯"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.view.SlantedTextViewActivity"
+            android:name=".activity.view.textview.SlantedTextViewActivity"
             android:label="倾斜textview"
             android:screenOrientation="portrait" />
+        <activity android:name=".activity.view.textview.NumberTextViewActivity"
+            android:label="数字变化textview"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.view.KeyboardActivity"
             android:label="自定义数字键盘"
@@ -48,7 +51,15 @@
             android:label="验证码输入框"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.view.FoldTextViewActivity"
+            android:name=".activity.view.textview.TextViewActivity"
+            android:label="textview相关"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.view.imageview.ImageViewActivity"
+            android:label="imageView相关"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.view.textview.FoldTextViewActivity"
             android:label="折叠textview"
             android:screenOrientation="portrait" />
         <activity

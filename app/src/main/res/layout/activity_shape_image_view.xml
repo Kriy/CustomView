@@ -14,13 +14,13 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <com.lemon.customview.widget.ShapeImageView
+            <com.lemon.customview.widget.imageview.ShapeImageView
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:src="@mipmap/test"
                 app:siv_shape="circle" />
 
-            <com.lemon.customview.widget.ShapeImageView
+            <com.lemon.customview.widget.imageview.ShapeImageView
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:layout_marginStart="5dp"
@@ -28,7 +28,7 @@
                 app:siv_round_radius="25dp"
                 app:siv_shape="rect" />
 
-            <com.lemon.customview.widget.ShapeImageView
+            <com.lemon.customview.widget.imageview.ShapeImageView
                 android:layout_width="80dp"
                 android:layout_height="110dp"
                 android:layout_marginStart="5dp"
@@ -39,7 +39,7 @@
                 app:siv_shape="oval" />
         </LinearLayout>
 
-        <com.lemon.customview.widget.ShapeImageView
+        <com.lemon.customview.widget.imageview.ShapeImageView
             android:layout_width="220dp"
             android:layout_height="110dp"
             android:layout_marginStart="5dp"
@@ -52,7 +52,7 @@
             app:siv_round_radius="15dp"
             app:siv_shape="circle" />
 
-        <com.lemon.customview.widget.ShapeImageView
+        <com.lemon.customview.widget.imageview.ShapeImageView
             android:layout_width="220dp"
             android:layout_height="110dp"
             android:layout_marginStart="5dp"
@@ -66,7 +66,7 @@
             app:siv_round_radius_rightBottom="0dp"
             app:siv_shape="rect" />
 
-        <com.lemon.customview.widget.ShapeImageView
+        <com.lemon.customview.widget.imageview.ShapeImageView
             android:layout_width="220dp"
             android:layout_height="110dp"
             android:layout_marginStart="5dp"

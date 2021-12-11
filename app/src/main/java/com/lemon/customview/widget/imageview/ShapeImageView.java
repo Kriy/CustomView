@@ -1,4 +1,4 @@
-package com.lemon.customview.widget;
+package com.lemon.customview.widget.imageview;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,11 +13,12 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.support.v7.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatImageView;
 import android.util.AttributeSet;
 
 import com.lemon.customview.R;
 import com.lemon.customview.utils.ImageUtils;
+import com.lemon.customview.widget.SelectorAttrs;
 
 public class ShapeImageView extends AppCompatImageView {
 
