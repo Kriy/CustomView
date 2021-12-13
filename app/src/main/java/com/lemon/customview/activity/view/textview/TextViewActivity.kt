@@ -19,6 +19,7 @@ class TextViewActivity : AppCompatActivity(), View.OnClickListener {
         btn_fold_text_view.setOnClickListener(this)
         btn_expand_text_view.setOnClickListener(this)
         btn_number_text_view.setOnClickListener(this)
+        btn_alpha_text_view.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
@@ -45,6 +46,12 @@ class TextViewActivity : AppCompatActivity(), View.OnClickListener {
                 Intent(
                     this@TextViewActivity,
                     NumberTextViewActivity::class.java
+                )
+            )
+            R.id.btn_alpha_text_view -> startActivity(
+                Intent(
+                    this@TextViewActivity,
+                    AlphaTextViewActivity::class.java
                 )
             )
         }
