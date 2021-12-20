@@ -3,7 +3,13 @@ package com.lemon.customview.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.lemon.customview.model.CharacterDiffResult;
+
 import java.io.Closeable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Util {
 
@@ -52,6 +58,65 @@ public class Util {
             } catch (Exception ignored) {
             }
         }
+    }
+
+    public static List<CharacterDiffResult> diff(CharSequence oldText, CharSequence newText) {
+
+        List<CharacterDiffResult> differentList = new ArrayList<>();
+        Set<Integer> skip = new HashSet<>();
+
+        for (int i = 0; i < oldText.length(); i++) {
+            char c = oldText.charAt(i);
+            for (int j = 0; j < newText.length(); j++) {
+                if (!skip.contains(j) && c == newText.charAt(j)) {
+                    skip.add(j);
+                    CharacterDiffResult different = new CharacterDiffResult();
+                    different.c = c;
+                    different.fromIndex = i;
+                    different.moveIndex = j;
+                    differentList.add(different);
+                    break;
+                }
+            }
+        }
+        return differentList;
+    }
+
+    public static int needMove(int index, List<CharacterDiffResult> differentList) {
+        for (CharacterDiffResult different : differentList) {
+            if (different.fromIndex == index) {
+                return different.moveIndex;
+            }
+        }
+        return -1;
+    }
+
+    public static boolean stayHere(int index, List<CharacterDiffResult> differentList) {
+        for (CharacterDiffResult different : differentList) {
+            if (different.moveIndex == index) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @return
+     */
+    public static float getOffset(int from, int move, float progress, float startX, float oldStartX, float[] gaps, float[] oldGaps) {
+
+        float dist = startX;
+        for (int i = 0; i < move; i++) {
+            dist += gaps[i];
+        }
+
+        float cur = oldStartX;
+        for (int i = 0; i < from; i++) {
+            cur += oldGaps[i];
+        }
+
+        return cur + (dist - cur) * progress;
+
     }
 
 }

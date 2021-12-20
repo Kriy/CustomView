@@ -72,6 +72,10 @@
             android:label="加强版折叠TextView"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activity.view.textview.HTextViewActivity"
+            android:label="倾斜textview"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.view.imageview.ImageViewActivity"
             android:label="imageView相关"
             android:screenOrientation="portrait" />
